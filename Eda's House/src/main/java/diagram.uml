@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="37.5" y="-34.5">model_view</node>
+    <node x="401.0" y="-34.5">view</node>
+    <node x="234.5" y="-34.5">model</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="278.0" y="-20.0" />
+  <SelectedNodes>
+    <node>view</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>Project Files</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
