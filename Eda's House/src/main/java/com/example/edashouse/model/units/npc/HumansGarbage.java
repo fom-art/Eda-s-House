@@ -2,5 +2,5 @@ package com.example.edashouse.model.units.npc;
 
 import com.example.edashouse.model.units.NonPlayableCharacters;
 
-public class Garbage extends NonPlayableCharacters {
+public class HumansGarbage extends NonPlayableCharacters {
 }

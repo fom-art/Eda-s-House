@@ -4,13 +4,13 @@ public enum Constants {
     GRID_CELL_SIZE(80),
     GRID_SIZE_IN_CELLS(9);
 
-    private Integer value;
+    private int value;
 
-    Constants(Integer value) {
+    Constants(int value) {
         this.value = value;
     }
 
-    public Integer getValue() {
+    public int getValue() {
         return value;
     }
 }

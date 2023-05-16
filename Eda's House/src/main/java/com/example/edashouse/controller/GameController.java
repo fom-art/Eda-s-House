@@ -16,6 +16,7 @@ public class GameController extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         layout = new Layout(stage);
+        layout.addWitch();
         SceneListenersSetter scene = new SceneListenersSetter(layout.getScene(), layout);
 
     }

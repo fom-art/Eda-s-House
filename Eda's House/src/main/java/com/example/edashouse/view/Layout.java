@@ -82,11 +82,10 @@ public class Layout {
 
 
     private void test() {
-        addWitch();
 
     }
 
-    private void addWitch() {
+    public void addWitch() {
         witch = new Witch(BasicCoordinates.WITCH_DEFAULT.getCoordinates());
         //Initialize the image
         Image image = new Image(witch.getImagePath());

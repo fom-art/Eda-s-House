@@ -6,5 +6,5 @@ public enum ActionsConstants {
     UP_KEY_PRESSED,
     DOWN_KEY_PRESSED,
     F_KEY_PRESSED,
-    ESC_KEY_PRESSED
+    ESC_KEY_PRESSED,
 }

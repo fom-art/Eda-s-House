@@ -1,9 +1,11 @@
 package com.example.edashouse.model.units;
 
+import com.example.edashouse.model.constants.Characters;
+
 public abstract class NonPlayableCharacters {
     private int[] coordinates;
     private String imageURL;
-    private int actionCode;
+    private Characters characterCode;
 
     public int[] getCoordinates() {
         return this.coordinates;
@@ -13,19 +15,19 @@ public abstract class NonPlayableCharacters {
         return this.imageURL;
     }
 
-    public int getActionCode() {
-        return this.actionCode;
+    public Characters getCharacterCode() {
+        return this.characterCode;
     }
 
     public void setCoordinates(int[] coordinates) {
         this.coordinates = coordinates;
     }
 
-    public void setCoordinates(String imageURL) {
+    public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
 
-    public void setCoordinates(int actionCode) {
-        this.actionCode = actionCode;
+    public void setCharacterCode(Characters characterCode) {
+        this.characterCode = characterCode;
     }
 }
