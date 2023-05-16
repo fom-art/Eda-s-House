@@ -1,5 +1,6 @@
 package com.example.edashouse.controller;
 
+import com.example.edashouse.LoggingHandler;
 import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.model.units.Witch;
 import com.example.edashouse.model.constants.ActionsConstants;
@@ -37,6 +38,7 @@ public class Actions {
         {
             oldCoordinates[0] = oldCoordinates[0] - Constants.GRID_CELL_SIZE.getValue();
         }
+        LoggingHandler.logInfo("MOVED LEFT");
         return oldCoordinates;
     }
 
@@ -45,6 +47,7 @@ public class Actions {
         {
             oldCoordinates[0] = oldCoordinates[0] + Constants.GRID_CELL_SIZE.getValue();
         }
+        LoggingHandler.logInfo("MOVED RIGHT");
         return oldCoordinates;
     }
 
@@ -54,6 +57,7 @@ public class Actions {
         {
             oldCoordinates[1] = oldCoordinates[1] + Constants.GRID_CELL_SIZE.getValue();
         }
+        LoggingHandler.logInfo("MOVED DOWN");
         return oldCoordinates;
     }
 
@@ -62,7 +66,7 @@ public class Actions {
         {
             oldCoordinates[1] = oldCoordinates[1] - Constants.GRID_CELL_SIZE.getValue();
         }
+        LoggingHandler.logInfo("MOVED UP");
         return oldCoordinates;
     }
-
 }
