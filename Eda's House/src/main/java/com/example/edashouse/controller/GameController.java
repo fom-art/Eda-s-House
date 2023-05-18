@@ -1,6 +1,7 @@
 package com.example.edashouse.controller;
 
 import com.example.edashouse.view.Layout;
+import com.example.edashouse.view.NonPlayableCharactersActivator;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -17,8 +18,11 @@ public class GameController extends Application {
     public void start(Stage stage) throws Exception {
         layout = new Layout(stage);
         layout.addWitch();
-        layout.addNPC();
+        activateNPCharacters(layout);
         SceneListenersSetter scene = new SceneListenersSetter(layout.getScene(), layout);
+    }
 
+    public void activateNPCharacters(Layout layout) {
+        new NonPlayableCharactersActivator(layout);
     }
 }
