@@ -1,6 +1,7 @@
 package com.example.edashouse.view;
 
 
+import com.example.edashouse.LoggingHandler;
 import com.example.edashouse.model.units.NonPlayableCharacters;
 import com.example.edashouse.model.units.Witch;
 import com.example.edashouse.model.constants.*;
@@ -11,6 +12,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Layout {
@@ -107,6 +109,7 @@ public class Layout {
         //Get witch view from pane
         ImageView witchView = (ImageView) pane.getChildren().get(ViewIndexes.WITCH_VIEW.getValue());
         //Set coordinates
+        LoggingHandler.logInfo(Arrays.toString(newCoordinates));
         witchView.setLayoutX(newCoordinates[0]);
         witchView.setLayoutY(newCoordinates[1]);
         //Initialize the image
