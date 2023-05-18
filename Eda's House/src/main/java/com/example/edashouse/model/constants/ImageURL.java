@@ -2,10 +2,10 @@ package com.example.edashouse.model.constants;
 
 public enum ImageURL {
     BACKGROUND("/owl_house_image.png"),
-    WITCH_FRONT("/eda.jpg"),
-    WITCH_BACK("/eda.jpg"),
-    WITCH_LEFT("/eda.jpg"),
-    WITCH_RIGHT("/eda.jpg"),
+    WITCH_FRONT("/eda_forward.png"),
+    WITCH_BACK("/eda_back.png"),
+    WITCH_LEFT("/eda_left.png"),
+    WITCH_RIGHT("/eda_right.png"),
     BUGS("/bugs.jpg"),
     BELLFLOWER("/bellflower.jpg"),
     ELIXIR("/elixir.jpg"),
