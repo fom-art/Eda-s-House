@@ -17,6 +17,7 @@ public class GameController extends Application {
     public void start(Stage stage) throws Exception {
         layout = new Layout(stage);
         layout.addWitch();
+        layout.addNPC();
         SceneListenersSetter scene = new SceneListenersSetter(layout.getScene(), layout);
 
     }

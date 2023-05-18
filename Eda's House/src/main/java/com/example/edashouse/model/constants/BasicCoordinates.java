@@ -5,7 +5,7 @@ import com.example.edashouse.model.utils.CoordinatesCounter;
 public enum BasicCoordinates {
     WITCH_DEFAULT(CoordinatesCounter.calculateCoordinates(5, 4)),
     BUGS(CoordinatesCounter.calculateCoordinates(9, 2)),
-    FLOWERS(CoordinatesCounter.calculateCoordinates(6, 9)),
+    BELLFLOWER(CoordinatesCounter.calculateCoordinates(6, 9)),
     HUMANS_GARBAGE(CoordinatesCounter.calculateCoordinates(1, 3)),
     KING(CoordinatesCounter.calculateCoordinates(1, 4)),
     MOUSES(CoordinatesCounter.calculateCoordinates(7, 1)),

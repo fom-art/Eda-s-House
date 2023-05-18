@@ -18,7 +18,6 @@ public class NonPlayableCharactersActivator {
     }
 
     private void setUpSnake() {
-
     }
 
     private void setUpSpider() {

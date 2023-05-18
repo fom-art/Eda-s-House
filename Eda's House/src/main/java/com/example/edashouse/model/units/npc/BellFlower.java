@@ -5,10 +5,10 @@ import com.example.edashouse.model.constants.Characters;
 import com.example.edashouse.model.constants.ImageURL;
 import com.example.edashouse.model.units.NonPlayableCharacters;
 
-public class King extends NonPlayableCharacters {
-    public King() {
-        setCoordinates(BasicCoordinates.KING.getCoordinates());
-        setImageURL(ImageURL.KING.getURL());
-        setCharacterCode(Characters.KING);
+public class BellFlower extends NonPlayableCharacters {
+    public BellFlower() {
+        setCoordinates(BasicCoordinates.BELLFLOWER.getCoordinates());
+        setImageURL(ImageURL.BELLFLOWER.getURL());
+        setCharacterCode(Characters.BELLFLOWER);
     }
 }

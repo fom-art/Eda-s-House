@@ -100,6 +100,10 @@ public class Layout {
         pane.getChildren().add(ViewIndexes.WITCH_VIEW.getValue(), witchView);
     }
 
+    public void addNPC() {
+
+    }
+
     public void updateWitch(int[] newCoordinates, ActionsConstants direction) {
         //Update the witch data
         witch.setImage(direction);

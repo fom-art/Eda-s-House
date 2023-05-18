@@ -3,7 +3,7 @@ package com.example.edashouse.model.constants;
 public enum Characters {
     WITCH,
     BUGS,
-    FLOWERS,
+    BELLFLOWER,
     HUMANS_GARBAGE,
     HOOTY,
     KING,
