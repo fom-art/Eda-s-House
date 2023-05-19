@@ -26,6 +26,7 @@ public class Actions {
     private void moveHero(ActionsConstants action) {
         Witch witch = layout.getWitch();
         int[] witchCoordinates = witch.getCoordinates();
+        witch.setLastAction(action);
         switch (action) {
             case LEFT_KEY_PRESSED -> layout.updateWitch(getCoordinatesToMoveLeft(witchCoordinates), action);
             case RIGHT_KEY_PRESSED -> layout.updateWitch(getCoordinatesToMoveRight(witchCoordinates), action);

@@ -9,6 +9,7 @@ public class Witch {
     private int[] coordinates;
     private String imagePath;
     private Characters characterCode;
+    private ActionsConstants lastAction;
 
     public Witch(int[] coordinates) {
         imagePath = ImageURL.WITCH_FRONT.getURL();
@@ -29,6 +30,10 @@ public class Witch {
         }
     }
 
+    public void setLastAction(ActionsConstants action) {
+        this.lastAction = action;
+    }
+
     public int[] getCoordinates() {
         return coordinates;
     }
@@ -39,5 +44,9 @@ public class Witch {
 
     public String getImagePath() {
         return imagePath;
+    }
+
+    public ActionsConstants getLastAction() {
+        return lastAction;
     }
 }
