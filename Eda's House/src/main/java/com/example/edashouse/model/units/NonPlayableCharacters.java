@@ -1,43 +1,35 @@
 package com.example.edashouse.model.units;
 
 import com.example.edashouse.model.constants.Characters;
-import com.example.edashouse.model.constants.ViewIndexes;
 
 public abstract class NonPlayableCharacters {
-    private int[] coordinates;
     private String imageURL;
-    private Characters characterCode;
+    private Characters character;
     private Integer characterViewCode;
 
-    public int[] getCoordinates() {
-        return this.coordinates;
-    }
 
     public String getImageURL() {
         return this.imageURL;
     }
 
-    public Characters getCharacterCode() {
-        return this.characterCode;
+    public Characters getCharacter() {
+        return this.character;
     }
 
     public Integer getCharacterViewCode() {
         return this.characterViewCode;
     }
 
-    public void setCoordinates(int[] coordinates) {
-        this.coordinates = coordinates;
-    }
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
 
-    public void setCharacterCode(Characters characterCode) {
-        this.characterCode = characterCode;
+    public void setCharacterCode(Characters character) {
+        this.character = character;
     }
 
-    public void setCharacterViewCode(ViewIndexes viewIndexes) {
-        this.characterViewCode = viewIndexes.getValue();
+    public void setCharacterViewCode(Characters viewIndexes) {
+        this.characterViewCode = viewIndexes.getIndex();
     }
 }

@@ -19,7 +19,8 @@ public enum ImageURL {
     MOUSE("/mouse.png"),
     SNAKES_OIL("/snake's_oil.png"),
     SNAKES_SKIN("/snake's_skin.png"),
-    SPIDER("/spider.png");
+    SPIDER("/spider.png"),
+    F_KEY_ICON("/f_key_icon.png");
 
     private String url;
 

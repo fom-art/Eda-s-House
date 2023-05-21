@@ -88,7 +88,7 @@ public class Layout {
     }
 
     public void addWitch() {
-        witch = new Witch(BasicCoordinates.WITCH_DEFAULT.getCoordinates());
+        witch = new Witch(Characters.WITCH.getCoordinates());
         //Initialize the image
         Image image = new Image(witch.getImagePath());
         ImageView witchView = new ImageView(image);
@@ -99,19 +99,26 @@ public class Layout {
         witchView.setLayoutX(witch.getCoordinates()[0]);
         witchView.setLayoutY(witch.getCoordinates()[1]);
         //Add to Pane
-        pane.getChildren().add(ViewIndexes.WITCH_VIEW.getValue(), witchView);
+        pane.getChildren().add(Characters.WITCH.getIndex(), witchView);
     }
 
-    public void updateWitch(int[] newCoordinates, ActionsConstants direction) {
+    public void updateWitchPosition(int[] newCoordinates) {
         //Update the witch data
-        witch.setImage(direction);
         witch.setCoordinates(newCoordinates);
         //Get witch view from pane
-        ImageView witchView = (ImageView) pane.getChildren().get(ViewIndexes.WITCH_VIEW.getValue());
+        ImageView witchView = (ImageView) pane.getChildren().get(Characters.WITCH.getIndex());
         //Set coordinates
         LoggingHandler.logInfo(Arrays.toString(newCoordinates));
         witchView.setLayoutX(newCoordinates[0]);
         witchView.setLayoutY(newCoordinates[1]);
+
+    }
+
+    public void updateWitchImage(ActionsConstants direction) {
+        //Update the witch data
+        witch.setImage(direction);
+        //Get witch view from pane
+        ImageView witchView = (ImageView) pane.getChildren().get(Characters.WITCH.getIndex());
         //Initialize the image
         Image image = new Image(witch.getImagePath());
         //Update the image

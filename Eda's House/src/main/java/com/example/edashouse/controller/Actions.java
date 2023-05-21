@@ -1,19 +1,23 @@
 package com.example.edashouse.controller;
 
 import com.example.edashouse.LoggingHandler;
-import com.example.edashouse.model.utils.GameLogicHandler;
-import com.example.edashouse.model.units.Witch;
 import com.example.edashouse.model.constants.ActionsConstants;
+import com.example.edashouse.model.constants.Characters;
 import com.example.edashouse.model.constants.Constants;
+import com.example.edashouse.model.units.Witch;
+import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.view.Layout;
+import com.example.edashouse.view.NonPlayableCharactersActivator;
 
 public class Actions {
     private Layout layout;
     private GameLogicHandler gameLogicHandler;
+    private NonPlayableCharactersActivator npcView;
 
-    public Actions(Layout layout) {
+    public Actions(Layout layout, NonPlayableCharactersActivator npcView) {
         this.layout = layout;
         this.gameLogicHandler = new GameLogicHandler();
+        this.npcView = npcView;
     }
 
     public void receiveAction(ActionsConstants action) {
@@ -27,22 +31,21 @@ public class Actions {
         Witch witch = layout.getWitch();
         int[] witchCoordinates = witch.getCoordinates();
         witch.setLastAction(action);
-        switch (action) {
-            case LEFT_KEY_PRESSED -> layout.updateWitch(getCoordinatesToMoveLeft(witchCoordinates), action);
-            case RIGHT_KEY_PRESSED -> layout.updateWitch(getCoordinatesToMoveRight(witchCoordinates), action);
-            case UP_KEY_PRESSED -> layout.updateWitch(getCoordinatesToMoveUp(witchCoordinates), action);
-            case DOWN_KEY_PRESSED -> layout.updateWitch(getCoordinatesToMoveDown(witchCoordinates), action);
+        int[] directionSquare = getNextSquareFromDirection(action, witchCoordinates);
+        if (gameLogicHandler.isValidMove(directionSquare)) {
+            layout.updateWitchPosition(directionSquare);
         }
+        layout.updateWitchImage(action);
+        setNearestNPCActive(witch);
     }
 
-    private int[] getCoordinatesToMoveLeft(int[] oldCoordinates) {
-        int[] newCoordinates = new int[] {oldCoordinates[0] - Constants.GRID_CELL_SIZE.getValue(), oldCoordinates[1]};
+    private int[] getCoordinatesFromLeft(int[] oldCoordinates) {
+        int[] newCoordinates = new int[]{oldCoordinates[0] - Constants.GRID_CELL_SIZE.getValue(), oldCoordinates[1]};
         //If the desired new point, is not a wall, or an object, it returns the
         //desired new coordinate, else, it returns the old coordinates, therefore
         //the character doesn't change its position
         if (
                 oldCoordinates[0] != 0
-                        && gameLogicHandler.isValidMove(newCoordinates)
         ) {
             LoggingHandler.logInfo("MOVED LEFT");
             return newCoordinates;
@@ -51,14 +54,13 @@ public class Actions {
         }
     }
 
-    private int[] getCoordinatesToMoveRight(int[] oldCoordinates) {
-        int[] newCoordinates = new int[] {oldCoordinates[0] + Constants.GRID_CELL_SIZE.getValue(), oldCoordinates[1]};
+    private int[] getCoordinatesFromRight(int[] oldCoordinates) {
+        int[] newCoordinates = new int[]{oldCoordinates[0] + Constants.GRID_CELL_SIZE.getValue(), oldCoordinates[1]};
         //If the desired new point, is not a wall, or an object, it returns the
         //desired new coordinate, else, it returns the old coordinates, therefore
         //the character doesn't change its position
         if (
                 oldCoordinates[0] != Constants.GRID_CELL_SIZE.getValue() * (Constants.GRID_SIZE_IN_CELLS.getValue() - 1)
-                && gameLogicHandler.isValidMove(newCoordinates)
         ) {
             LoggingHandler.logInfo("MOVED RIGHT");
             return newCoordinates;
@@ -67,14 +69,13 @@ public class Actions {
         }
     }
 
-    private int[] getCoordinatesToMoveDown(int[] oldCoordinates) {
-        int[] newCoordinates = new int[] {oldCoordinates[0], oldCoordinates[1] + Constants.GRID_CELL_SIZE.getValue()};
+    private int[] getCoordinatesFromBelow(int[] oldCoordinates) {
+        int[] newCoordinates = new int[]{oldCoordinates[0], oldCoordinates[1] + Constants.GRID_CELL_SIZE.getValue()};
         //If the desired new point, is not a wall, or an object, it returns the
         //desired new coordinate, else, it returns the old coordinates, therefore
         //the character doesn't change its position
         if (
                 oldCoordinates[1] != Constants.GRID_CELL_SIZE.getValue() * (Constants.GRID_SIZE_IN_CELLS.getValue() - 1)
-                        && gameLogicHandler.isValidMove(newCoordinates)
         ) {
             LoggingHandler.logInfo("MOVED DOWN");
             return newCoordinates;
@@ -83,19 +84,47 @@ public class Actions {
         }
     }
 
-    private int[] getCoordinatesToMoveUp(int[] oldCoordinates) {
-        int[] newCoordinates = new int[] {oldCoordinates[0], oldCoordinates[1] - Constants.GRID_CELL_SIZE.getValue()};
+    private int[] getCoordinatesFromAbove(int[] oldCoordinates) {
+        int[] newCoordinates = new int[]{oldCoordinates[0], oldCoordinates[1] - Constants.GRID_CELL_SIZE.getValue()};
         //If the desired new point, is not a wall, or an object, it returns the
         //desired new coordinate, else, it returns the old coordinates, therefore
         //the character doesn't change its position
         if (
                 oldCoordinates[1] != 0
-                        && gameLogicHandler.isValidMove(newCoordinates)
         ) {
             LoggingHandler.logInfo("MOVED UP");
             return newCoordinates;
         } else {
             return oldCoordinates;
         }
+    }
+
+    private void setNearestNPCActive(Witch witch) {
+        ActionsConstants lastAction = witch.getLastAction();
+        int[] witchCoordinates = witch.getCoordinates();
+        int[] nextSquareCoordinates = getNextSquareFromDirection(lastAction, witchCoordinates);
+
+        Characters nearestNPC = gameLogicHandler.getObjectFromCoordinates(nextSquareCoordinates);
+        if (nearestNPC != null) {
+            npcView.setActive(nearestNPC);
+        }
+    }
+
+    private int[] getNextSquareFromDirection(ActionsConstants direction, int[] coordinates) {
+        switch (direction) {
+            case LEFT_KEY_PRESSED -> {
+                return getCoordinatesFromLeft(coordinates);
+            }
+            case RIGHT_KEY_PRESSED -> {
+                return getCoordinatesFromRight(coordinates);
+            }
+            case UP_KEY_PRESSED -> {
+                return getCoordinatesFromAbove(coordinates);
+            }
+            case DOWN_KEY_PRESSED -> {
+                return getCoordinatesFromBelow(coordinates);
+            }
+        }
+        return null;
     }
 }

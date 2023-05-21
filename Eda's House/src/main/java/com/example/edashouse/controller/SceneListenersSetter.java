@@ -2,6 +2,7 @@ package com.example.edashouse.controller;
 
 import com.example.edashouse.model.constants.ActionsConstants;
 import com.example.edashouse.view.Layout;
+import com.example.edashouse.view.NonPlayableCharactersActivator;
 import javafx.scene.Scene;
 
 //This class contains gets the Scene, and sets it's reaction to some keys being.
@@ -9,10 +10,12 @@ import javafx.scene.Scene;
 public class SceneListenersSetter {
     private Scene scene;
     private Actions actions;
+    private NonPlayableCharactersActivator npcView;
 
-    public SceneListenersSetter(Scene scene, Layout layout) {
+    public SceneListenersSetter(Scene scene, Layout layout, NonPlayableCharactersActivator npcView) {
         this.scene = scene;
-        this.actions = new Actions(layout);
+        this.actions = new Actions(layout, npcView);
+        this.npcView = npcView;
         setUp();
     }
 

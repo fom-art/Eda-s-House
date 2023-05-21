@@ -6,21 +6,21 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class GameController extends Application {
-    //TODO    Good reference https://github.com/smowgli/space-runner-game-javafx/blob/main/src/view/GameViewManager.java
-    //TODO    Add interactions with objects
-    //TODO    Do refactoring, especially related to CVM
+    //TODO  Good reference https://github.com/smowgli/space-runner-game-javafx/blob/main/src/view/GameViewManager.java
+    //TODO  Add last move listener
+    //TODO  Add itemHeld for a witch
+    //TODO  Add objectsOnActivatedActions
+    //TODO  Add interactions with objects
+    //TODO  Do refactoring, especially related to CVM
 
     private Layout layout;
+    private NonPlayableCharactersActivator npcView;
 
     @Override
     public void start(Stage stage) throws Exception {
         layout = new Layout(stage);
         layout.addWitch();
-        activateNPCharacters(layout);
-        SceneListenersSetter scene = new SceneListenersSetter(layout.getScene(), layout);
-    }
-
-    public void activateNPCharacters(Layout layout) {
-        new NonPlayableCharactersActivator(layout);
+        npcView = new NonPlayableCharactersActivator(layout);
+        SceneListenersSetter scene = new SceneListenersSetter(layout.getScene(), layout, npcView);
     }
 }
