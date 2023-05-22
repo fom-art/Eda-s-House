@@ -1,6 +1,5 @@
 package com.example.edashouse.controller;
 
-import com.example.edashouse.LoggingHandler;
 import com.example.edashouse.model.constants.ActionsConstants;
 import com.example.edashouse.model.constants.NPCIdentity;
 import com.example.edashouse.model.units.NonPlayableCharacters;
@@ -47,14 +46,14 @@ public class ActivationActions {
     }
 
     private void pickAnItem(NPCIdentity npcIdentity) {
-        LoggingHandler.logInfo("Item picked ");
+
     }
 
     private void putAnItemToThePot() {
-        LoggingHandler.logInfo("Item is put");
+
     }
 
     private void sellThePotion() {
-        LoggingHandler.logInfo("Spell is sold");
+
     }
 }

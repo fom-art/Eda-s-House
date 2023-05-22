@@ -13,7 +13,8 @@ public enum Characters {
     SNAKES(CoordinatesCounter.calculateCoordinates(2, 6), 7),
     SPIDERS(CoordinatesCounter.calculateCoordinates(9, 9), 8),
     WINDOWSILL(CoordinatesCounter.calculateCoordinates(9, 5), 9),
-    ACTIVE_ICON(CoordinatesCounter.calculateCoordinates(-3, -3), 10);
+    ACTIVE_ICON(CoordinatesCounter.calculateCoordinates(-3, -3), 10),
+    PICKED_ITEM(CoordinatesCounter.calculateCoordinates(-3, -3), 11);
 
     private final int[] coordinates;
     private final Integer index;
