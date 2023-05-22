@@ -104,4 +104,12 @@ public class NonPlayableCharactersActivator {
         activeIconView.setLayoutX(newActiveIconPosition[0]);
         activeIconView.setLayoutY(newActiveIconPosition[1]);
     }
+
+    public void unsetActivation() {
+        //Get active icon view from pane
+        ImageView activeIconView = (ImageView) layout.getPane().getChildren().get(Characters.ACTIVE_ICON.getIndex());
+        //Set coordinates
+        activeIconView.setLayoutX(Characters.ACTIVE_ICON.getCoordinates()[0]);
+        activeIconView.setLayoutY(Characters.ACTIVE_ICON.getCoordinates()[1]);
+    }
 }

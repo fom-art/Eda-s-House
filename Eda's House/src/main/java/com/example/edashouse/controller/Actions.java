@@ -36,6 +36,11 @@ public class Actions {
             layout.updateWitchPosition(directionSquare);
         }
         layout.updateWitchImage(action);
+        setNPCActivation(witch);
+    }
+
+    private void setNPCActivation(Witch witch) {
+        unsetNPCActivation();
         setNearestNPCActive(witch);
     }
 
@@ -108,6 +113,10 @@ public class Actions {
         if (nearestNPC != null) {
             npcView.setActive(nearestNPC);
         }
+    }
+
+    private void unsetNPCActivation() {
+        npcView.unsetActivation();
     }
 
     private int[] getNextSquareFromDirection(ActionsConstants direction, int[] coordinates) {
