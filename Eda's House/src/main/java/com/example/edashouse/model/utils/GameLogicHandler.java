@@ -96,4 +96,15 @@ public class GameLogicHandler {
             }
         }
     }
+
+    public NonPlayableCharacters getNPCToBeActivated() {
+        NonPlayableCharacters result = null;
+        for (NonPlayableCharacters npc: npcList
+        ) {
+            if (npc != null && npc.getIsToBeActivated()){
+                result = npc;
+            }
+        }
+        return result;
+    }
 }

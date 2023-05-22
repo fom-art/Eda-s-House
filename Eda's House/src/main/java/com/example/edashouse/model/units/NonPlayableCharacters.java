@@ -1,12 +1,14 @@
 package com.example.edashouse.model.units;
 
 import com.example.edashouse.model.constants.Characters;
+import com.example.edashouse.model.constants.NPCIdentity;
 
 public abstract class NonPlayableCharacters {
     private String imageURL;
     private Characters character;
     private Integer characterViewCode;
     private boolean isToBeActivated = false;
+    private NPCIdentity npcId;
 
 
     public String getImageURL() {
@@ -25,11 +27,15 @@ public abstract class NonPlayableCharacters {
         return this.isToBeActivated;
     }
 
+    public NPCIdentity getNPCId() {
+        return this.npcId;
+    }
+
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
 
-    public void setCharacterCode(Characters character) {
+    public void setCharacter(Characters character) {
         this.character = character;
     }
 
@@ -39,5 +45,9 @@ public abstract class NonPlayableCharacters {
 
     public void setIsToBeActivated(boolean isToBeActivated) {
         this.isToBeActivated = isToBeActivated;
+    }
+
+    public void setNPCId(NPCIdentity npcId) {
+        this.npcId = npcId;
     }
 }

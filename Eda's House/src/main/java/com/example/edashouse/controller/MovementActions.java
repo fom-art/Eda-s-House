@@ -9,14 +9,14 @@ import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.view.Layout;
 import com.example.edashouse.view.NonPlayableCharactersActivator;
 
-public class Actions {
+public class MovementActions {
     private Layout layout;
     private GameLogicHandler gameLogicHandler;
     private NonPlayableCharactersActivator npcView;
 
-    public Actions(Layout layout, NonPlayableCharactersActivator npcView) {
+    public MovementActions(Layout layout, NonPlayableCharactersActivator npcView, GameLogicHandler gameLogicHandler) {
         this.layout = layout;
-        this.gameLogicHandler = new GameLogicHandler();
+        this.gameLogicHandler = gameLogicHandler;
         this.npcView = npcView;
     }
 
