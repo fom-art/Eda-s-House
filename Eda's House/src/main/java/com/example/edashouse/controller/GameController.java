@@ -7,10 +7,9 @@ import javafx.stage.Stage;
 
 public class GameController extends Application {
     //TODO  Good reference https://github.com/smowgli/space-runner-game-javafx/blob/main/src/view/GameViewManager.java
-    //TODO  Add last move listener
-    //TODO  Add itemHeld for a witch
-    //TODO  Add objectsOnActivatedActions
     //TODO  Add interactions with objects
+    //TODO  Add objectsOnActivatedActions
+    //TODO  Add itemHeld for a witch
     //TODO  Do refactoring, especially related to CVM
 
     private Layout layout;

@@ -111,11 +111,13 @@ public class Actions {
 
         Characters nearestNPC = gameLogicHandler.getObjectFromCoordinates(nextSquareCoordinates);
         if (nearestNPC != null) {
+            gameLogicHandler.setNPCActive(nearestNPC);
             npcView.setActive(nearestNPC);
         }
     }
 
     private void unsetNPCActivation() {
+        gameLogicHandler.unSetNPCActive();
         npcView.unsetActivation();
     }
 
