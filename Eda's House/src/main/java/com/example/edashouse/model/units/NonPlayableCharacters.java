@@ -6,6 +6,7 @@ public abstract class NonPlayableCharacters {
     private String imageURL;
     private Characters character;
     private Integer characterViewCode;
+    private boolean isToBeActivated = false;
 
 
     public String getImageURL() {
@@ -20,6 +21,9 @@ public abstract class NonPlayableCharacters {
         return this.characterViewCode;
     }
 
+    public boolean getIsToBeActivated() {
+        return this.isToBeActivated;
+    }
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
@@ -31,5 +35,9 @@ public abstract class NonPlayableCharacters {
 
     public void setCharacterViewCode(Characters viewIndexes) {
         this.characterViewCode = viewIndexes.getIndex();
+    }
+
+    public void setIsToBeActivated(boolean isToBeActivated) {
+        this.isToBeActivated = isToBeActivated;
     }
 }
