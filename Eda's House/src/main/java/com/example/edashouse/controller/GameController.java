@@ -7,9 +7,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class GameController extends Application {
-    //TODO  Add itemHeld implementation for a witch
     //TODO  Extend the Pot functionality
-    //TODO  Add throwing items in Pot
+    //TODO  Implement the item carriage on View level
     //TODO  Add potion logic
     //TODO  Add potion creation implementation
     //TODO  Add potion appearing animation

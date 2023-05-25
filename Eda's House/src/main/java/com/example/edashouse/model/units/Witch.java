@@ -1,9 +1,6 @@
 package com.example.edashouse.model.units;
 
-import com.example.edashouse.model.constants.ActionsConstants;
-import com.example.edashouse.model.constants.Characters;
-import com.example.edashouse.model.constants.ImageURL;
-import com.example.edashouse.model.constants.NPCIdentity;
+import com.example.edashouse.model.constants.*;
 import com.example.edashouse.model.potions.Potion;
 
 public class Witch {
@@ -12,7 +9,7 @@ public class Witch {
     private String imagePath;
     private Characters characterCode;
     private ActionsConstants lastAction;
-    private NPCIdentity itemHeld;
+    private Items itemHeld;
     private Potion potionHeld;
 
     public Witch(int[] coordinates) {
@@ -38,7 +35,7 @@ public class Witch {
         this.lastAction = action;
     }
 
-    public void setItemHeld(NPCIdentity item) {
+    public void setItemHeld(Items item) {
         this.itemHeld = item;
     }
 
@@ -62,7 +59,7 @@ public class Witch {
         return lastAction;
     }
 
-    public NPCIdentity getItemHeld() {
+    public Items getItemHeld() {
         return this.itemHeld;
     }
 

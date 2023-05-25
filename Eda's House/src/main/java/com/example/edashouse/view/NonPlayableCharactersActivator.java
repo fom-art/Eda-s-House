@@ -11,10 +11,15 @@ import javafx.scene.image.ImageView;
 
 public class NonPlayableCharactersActivator {
     private Layout layout;
+    private Pot pot;
 
     public NonPlayableCharactersActivator(Layout layout) {
         this.layout = layout;
         setUpNPCharacters();
+    }
+
+    public Pot getPot() {
+        return this.pot;
     }
 
     private void setUpNPCharacters() {
@@ -51,7 +56,8 @@ public class NonPlayableCharactersActivator {
     }
 
     private void setUpPot() {
-        setUpNonPlayableCharacter(new Pot());
+        pot = new Pot();
+        setUpNonPlayableCharacter(pot);
     }
 
     private void setUpSnakes() {
