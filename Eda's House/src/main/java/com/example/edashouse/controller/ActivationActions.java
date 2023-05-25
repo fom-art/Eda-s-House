@@ -4,7 +4,7 @@ import com.example.edashouse.LoggingHandler;
 import com.example.edashouse.model.constants.ActionsConstants;
 import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.model.constants.NPCIdentity;
-import com.example.edashouse.model.potions.Potion;
+import com.example.edashouse.model.constants.Potions;
 import com.example.edashouse.model.units.NonPlayableCharacters;
 import com.example.edashouse.model.units.Witch;
 import com.example.edashouse.model.units.npc.Pot;
@@ -50,7 +50,7 @@ public class ActivationActions {
                     MOUSES,
                     SNAKES,
                     SPIDERS -> pickAnItem(npcId);
-            case POT -> putToThePot();
+            case POT -> interactWithPot();
             case WINDOWSILL -> sellThePotion();
         }
     }
@@ -62,27 +62,31 @@ public class ActivationActions {
         }
     }
 
-    private void putToThePot() {
+    private void interactWithPot() {
         Items itemPut = witch.getItemHeld();
-        Potion potionPut = witch.getPotionHeld();
-        if (itemPut != null) {
-            putItemToPot(witch, pot, itemPut);
-            if (checkIfPotIsFull(pot)) {
-                startMakingPotion(pot);
-                pot.clear();
+        if (pot.getPotionResult() == null && pot.getItemResult() == null){
+            if (itemPut != null) {
+                putItemToPot(witch, pot, itemPut);
+                if (checkIfPotIsFull(pot)) {
+                    startMakingPotion(pot);
+                    pot.clear();
+                }
             }
-        }
-        if (potionPut != null) {
-            putPotionToPot(witch, pot, potionPut);
-            if (checkIfPotIsFull(pot)) {
-                startMakingPotion(pot);
-                pot.clear();
+        } else {
+            if (pot.getPotionResult() != null) {
+                LoggingHandler.logInfo("Potion held: " + pot.getPotionResult());
+                witch.setPotionHeld(pot.getPotionResult());
+                pot.setPotionResult(null);
+            } else {
+                LoggingHandler.logInfo("Item held: " + pot.getItemResult());
+                witch.setItemHeld(pot.getItemResult());
+                pot.setItemResult(null);
             }
         }
     }
 
     private void sellThePotion() {
-        Potion potionSold = witch.getPotionHeld();
+        Potions potionSold = witch.getPotionHeld();
         if (potionSold != null) {
             LoggingHandler.logInfo("Potion" + potionSold + " sold");
             witch.setPotionHeld(null);
@@ -95,14 +99,8 @@ public class ActivationActions {
         pot.addItemToPot(itemPut);
     }
 
-    private void putPotionToPot(Witch witch, Pot pot, Potion potionPut) {
-        LoggingHandler.logInfo("Potion " + potionPut + " is put in the pot");
-        witch.setPotionHeld(null);
-        pot.addPotionToPot(potionPut);
-    }
-
     private boolean checkIfPotIsFull(Pot pot) {
-        return pot.getPotionsPut().size() + pot.getItemsPut().size() == 0;
+        return pot.getItemsPut().size() == 3;
     }
 
     private void startMakingPotion(Pot pot) {

@@ -1,7 +1,6 @@
 package com.example.edashouse.model.units;
 
 import com.example.edashouse.model.constants.*;
-import com.example.edashouse.model.potions.Potion;
 
 public class Witch {
     //Coordinates will be having 2 values, X and Y coordinates accordingly
@@ -10,7 +9,7 @@ public class Witch {
     private Characters characterCode;
     private ActionsConstants lastAction;
     private Items itemHeld;
-    private Potion potionHeld;
+    private Potions potionHeld;
 
     public Witch(int[] coordinates) {
         imagePath = ImageURL.WITCH_FRONT.getURL();
@@ -39,7 +38,7 @@ public class Witch {
         this.itemHeld = item;
     }
 
-    public void setPotionHeld(Potion potion) {
+    public void setPotionHeld(Potions potion) {
         this.potionHeld = potion;
     }
 
@@ -63,7 +62,7 @@ public class Witch {
         return this.itemHeld;
     }
 
-    public Potion getPotionHeld() {
+    public Potions getPotionHeld() {
         return this.potionHeld;
     }
 }
