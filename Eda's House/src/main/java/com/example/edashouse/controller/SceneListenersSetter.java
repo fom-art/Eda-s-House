@@ -39,4 +39,8 @@ public class SceneListenersSetter {
             }
         });
     }
+
+    public GameLogicHandler getGameLogicHandler() {
+        return gameLogicHandler;
+    }
 }

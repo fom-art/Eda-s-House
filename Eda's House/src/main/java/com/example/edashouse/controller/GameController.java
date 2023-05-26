@@ -17,6 +17,7 @@ public class GameController extends Application {
     private Layout layout;
     private NonPlayableCharactersActivator npcView;
     private ItemsPickedActivator itemPickedView;
+    private SceneListenersSetter sceneListenersSetter;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -24,6 +25,22 @@ public class GameController extends Application {
         layout.addWitch();
         npcView = new NonPlayableCharactersActivator(layout);
         itemPickedView = new ItemsPickedActivator(layout);
-        SceneListenersSetter scene = new SceneListenersSetter(layout.getScene(), layout, npcView);
+        sceneListenersSetter = new SceneListenersSetter(layout.getScene(), layout, npcView);
+    }
+
+    public Layout getLayout() {
+        return layout;
+    }
+
+    public NonPlayableCharactersActivator getNpcView() {
+        return npcView;
+    }
+
+    public ItemsPickedActivator getItemPickedView() {
+        return itemPickedView;
+    }
+
+    public SceneListenersSetter getSceneListenersSetter() {
+        return sceneListenersSetter;
     }
 }
