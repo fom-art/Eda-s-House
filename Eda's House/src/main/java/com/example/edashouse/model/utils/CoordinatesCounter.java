@@ -8,4 +8,10 @@ public class CoordinatesCounter {
         int calculatedY = (coordinateY - 1) * Constants.GRID_CELL_SIZE.getValue();
         return new int[]{calculatedX, calculatedY};
     }
+
+    public static int[] calculateCoordinates(int[] coordinates) {
+        int calculatedX = (coordinates[0] - 1) * Constants.GRID_CELL_SIZE.getValue();
+        int calculatedY = (coordinates[1] - 1) * Constants.GRID_CELL_SIZE.getValue();
+        return new int[]{calculatedX, calculatedY};
+    }
 }
