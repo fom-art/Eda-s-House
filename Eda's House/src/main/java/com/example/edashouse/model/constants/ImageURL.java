@@ -1,5 +1,8 @@
 package com.example.edashouse.model.constants;
 
+/**
+ * URLs of images used in the game.
+ */
 public enum ImageURL {
     BACKGROUND("/owl_house_image.png"),
     WITCH_FRONT("/eda_forward.png"),
@@ -24,10 +27,20 @@ public enum ImageURL {
 
     private String url;
 
+    /**
+     * Constructs an image URL with the specified URL string.
+     *
+     * @param url the URL of the image
+     */
     ImageURL(String url) {
         this.url = url;
     }
 
+    /**
+     * Returns the URL of the image.
+     *
+     * @return the URL of the image
+     */
     public String getURL() {
         return url;
     }

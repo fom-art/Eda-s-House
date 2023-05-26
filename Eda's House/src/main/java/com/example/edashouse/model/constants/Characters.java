@@ -3,6 +3,9 @@ package com.example.edashouse.model.constants;
 import com.example.edashouse.model.csv.CSVReader;
 import com.example.edashouse.model.utils.CoordinatesCounter;
 
+/**
+ * Constants representing different characters in the game.
+ */
 public enum Characters {
     WITCH(CoordinatesCounter.calculateCoordinates(CSVReader.readCoordinatesOfCharacters(0)), 0),
     BELLFLOWER(CoordinatesCounter.calculateCoordinates(CSVReader.readCoordinatesOfCharacters(1)), 1),
@@ -20,15 +23,31 @@ public enum Characters {
     private final int[] coordinates;
     private final Integer index;
 
+    /**
+     * Constructs a character with the specified coordinates and index.
+     *
+     * @param coordinates the coordinates of the character
+     * @param index       the index of the character
+     */
     Characters(int[] coordinates, Integer index) {
         this.coordinates = coordinates;
         this.index = index;
     }
 
+    /**
+     * Returns the coordinates of the character.
+     *
+     * @return the coordinates of the character
+     */
     public int[] getCoordinates() {
         return coordinates;
     }
 
+    /**
+     * Returns the index of the character.
+     *
+     * @return the index of the character
+     */
     public Integer getIndex() {
         return index;
     }

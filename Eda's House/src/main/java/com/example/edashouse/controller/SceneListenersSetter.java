@@ -6,8 +6,10 @@ import com.example.edashouse.view.Layout;
 import com.example.edashouse.view.NonPlayableCharactersActivator;
 import javafx.scene.Scene;
 
-//This class contains gets the Scene, and sets it's reaction to some keys being.
-//The reactions will be implementing the class Actions
+/**
+ * This class sets up the listeners for the scene and handles key press events.
+ * The reactions to the key presses are implemented through the associated actions.
+ */
 public class SceneListenersSetter {
     private Scene scene;
     private MovementActions movementActions;
@@ -15,6 +17,13 @@ public class SceneListenersSetter {
     private NonPlayableCharactersActivator npcView;
     private GameLogicHandler gameLogicHandler;
 
+    /**
+     * Constructs a new instance of SceneListenersSetter.
+     *
+     * @param scene   the scene to set up listeners for
+     * @param layout  the game layout
+     * @param npcView the view for non-playable characters
+     */
     public SceneListenersSetter(Scene scene, Layout layout, NonPlayableCharactersActivator npcView) {
         this.scene = scene;
         this.gameLogicHandler = new GameLogicHandler();
@@ -24,10 +33,16 @@ public class SceneListenersSetter {
         setUp();
     }
 
+    /**
+     * Sets up the scene listeners and actions.
+     */
     private void setUp() {
         setupOnKeysPressedActions();
     }
 
+    /**
+     * Sets up the key press actions for the scene.
+     */
     private void setupOnKeysPressedActions() {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
@@ -40,6 +55,11 @@ public class SceneListenersSetter {
         });
     }
 
+    /**
+     * Returns the game logic handler associated with the scene listeners.
+     *
+     * @return the game logic handler
+     */
     public GameLogicHandler getGameLogicHandler() {
         return gameLogicHandler;
     }

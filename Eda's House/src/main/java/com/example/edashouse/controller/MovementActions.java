@@ -9,17 +9,32 @@ import com.example.edashouse.view.NonPlayableCharactersActivator;
 
 import static com.example.edashouse.model.utils.CoordinatesCounter.getNextSquareFromDirection;
 
+/**
+ * Controller class that handles movement actions in the game.
+ */
 public class MovementActions {
     private Layout layout;
     private GameLogicHandler gameLogicHandler;
     private NonPlayableCharactersActivator npcView;
 
+    /**
+     * Constructs a new instance of MovementActions.
+     *
+     * @param layout            the game layout
+     * @param npcView           the view of non-playable characters
+     * @param gameLogicHandler  the game logic handler
+     */
     public MovementActions(Layout layout, NonPlayableCharactersActivator npcView, GameLogicHandler gameLogicHandler) {
         this.layout = layout;
         this.gameLogicHandler = gameLogicHandler;
         this.npcView = npcView;
     }
 
+    /**
+     * Receives an action and performs the corresponding movement.
+     *
+     * @param action the action to be performed
+     */
     public void receiveAction(ActionsConstants action) {
         switch (action) {
             case LEFT_KEY_PRESSED, RIGHT_KEY_PRESSED,
@@ -42,7 +57,6 @@ public class MovementActions {
         setNearestNPCActive(witch);
     }
 
-
     private void setNearestNPCActive(Witch witch) {
         ActionsConstants lastAction = witch.getLastAction();
         int[] witchCoordinates = witch.getCoordinates();
@@ -59,6 +73,4 @@ public class MovementActions {
         gameLogicHandler.unSetNPCActive();
         npcView.unsetActivation();
     }
-
-
 }

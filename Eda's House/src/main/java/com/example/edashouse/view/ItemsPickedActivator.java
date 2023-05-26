@@ -15,25 +15,38 @@ public class ItemsPickedActivator {
         setUpPickedItemView();
     }
 
+    /**
+     * Sets up the view for the picked item.
+     */
     private void setUpPickedItemView() {
-        //Initialize the image
+        // Initialize the image
         Image image = new Image(ImageURL.SNAKES_SKIN.getURL());
         ImageView pickedItemView = new ImageView(image);
-        //Set sizes
+        // Set sizes
         pickedItemView.setFitWidth(Constants.GRID_CELL_SIZE.getValue());
         pickedItemView.setFitHeight(Constants.GRID_CELL_SIZE.getValue());
-        //Set coordinates
+        // Set coordinates
         pickedItemView.setLayoutX(Characters.PICKED_ITEM.getCoordinates()[0]);
         pickedItemView.setLayoutY(Characters.PICKED_ITEM.getCoordinates()[1]);
-        //Add to Pane
+        // Add to Pane
         layout.getPane().getChildren().add(Characters.PICKED_ITEM.getIndex(), pickedItemView);
     }
 
+    /**
+     * Updates the position of the picked item view.
+     *
+     * @param newCoordinates the new coordinates of the picked item
+     */
     private void updatePickedItemViewPosition(int[] newCoordinates) {
-
+        // TODO: Implement the logic to update the position of the picked item view
     }
 
+    /**
+     * Updates the image of the picked item view based on the NPC identity.
+     *
+     * @param npcId the NPC identity
+     */
     private void updatePickedItemViewImage(NPCIdentity npcId) {
-
+        // TODO: Implement the logic to update the image of the picked item view based on the NPC identity
     }
 }

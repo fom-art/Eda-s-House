@@ -1,5 +1,8 @@
 package com.example.edashouse.model.constants;
 
+/**
+ * Enum representing different types of potions in the game.
+ */
 public enum Potions {
     ELIXIR(new Items[]{Items.MOUSES, Items.SNAKES_OIL, Items.HUMANS_GARBAGE}),
     EXPLOSION_POTION(new Items[]{Items.BUGS, Items.KING, Items.SPIDERS}),
@@ -9,10 +12,20 @@ public enum Potions {
 
     private final Items[] recipe;
 
+    /**
+     * Constructs a Potion enum with the specified recipe.
+     *
+     * @param recipe the recipe for the potion
+     */
     Potions(Items[] recipe) {
         this.recipe = recipe;
     }
 
+    /**
+     * Gets the recipe for the potion.
+     *
+     * @return the recipe as an array of items
+     */
     public Items[] getRecipe() {
         return recipe;
     }

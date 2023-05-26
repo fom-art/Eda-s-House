@@ -7,18 +7,17 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class GameController extends Application {
-    //TODO  Implement the item carriage on View level
-    //TODO  Add potion creation implementation
-    //TODO  Add potion appearing animation
-    //TODO  Implement some tests
-    //TODO  Implement file reading
-    //TODO  Add JavaDoc
-
     private Layout layout;
     private NonPlayableCharactersActivator npcView;
     private ItemsPickedActivator itemPickedView;
     private SceneListenersSetter sceneListenersSetter;
 
+    /**
+     * Starts the application by initializing the stage and setting up the layout.
+     *
+     * @param stage the primary stage for the application
+     * @throws Exception if an exception occurs during the initialization process
+     */
     @Override
     public void start(Stage stage) throws Exception {
         layout = new Layout(stage);
@@ -26,21 +25,5 @@ public class GameController extends Application {
         npcView = new NonPlayableCharactersActivator(layout);
         itemPickedView = new ItemsPickedActivator(layout);
         sceneListenersSetter = new SceneListenersSetter(layout.getScene(), layout, npcView);
-    }
-
-    public Layout getLayout() {
-        return layout;
-    }
-
-    public NonPlayableCharactersActivator getNpcView() {
-        return npcView;
-    }
-
-    public ItemsPickedActivator getItemPickedView() {
-        return itemPickedView;
-    }
-
-    public SceneListenersSetter getSceneListenersSetter() {
-        return sceneListenersSetter;
     }
 }

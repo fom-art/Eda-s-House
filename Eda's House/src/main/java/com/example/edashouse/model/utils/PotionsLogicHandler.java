@@ -9,8 +9,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PotionsLogicHandler {
+    /**
+     * Creates a potion based on the items present in the Pot object.
+     *
+     * @param pot the Pot object containing the items
+     */
     public static void createPotion(Pot pot) {
-        LoggingHandler.logInfo("potion is to be made");
+        LoggingHandler.logInfo("Potion is to be made");
         Items[] ingredientsArray = getArrayFromList(pot.getItemsPut());
         Potions potion = getPotionFromIngredients(ingredientsArray);
         Items snakeOilSlot;

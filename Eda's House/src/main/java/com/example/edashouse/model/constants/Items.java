@@ -1,5 +1,8 @@
 package com.example.edashouse.model.constants;
 
+/**
+ * Types of items in the game.
+ */
 public enum Items {
     BELLFLOWER,
     BUGS,
