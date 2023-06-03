@@ -1,9 +1,9 @@
 package com.example.edashouse.controller;
 
 import com.example.edashouse.LoggingHandler;
-import com.example.edashouse.model.constants.ActionsConstants;
+import com.example.edashouse.model.constants.characters_data.ActionsConstants;
 import com.example.edashouse.model.constants.Items;
-import com.example.edashouse.model.constants.NPCIdentity;
+import com.example.edashouse.model.constants.characters_data.CharactersIdentity;
 import com.example.edashouse.model.constants.Potions;
 import com.example.edashouse.model.units.NonPlayableCharacters;
 import com.example.edashouse.model.units.Witch;
@@ -65,7 +65,7 @@ public class ActivationActions {
      *
      * @param npcId  the NPC identity
      */
-    private void makeAnAction(NPCIdentity npcId) {
+    private void makeAnAction(CharactersIdentity npcId) {
         switch (npcId) {
             case BELLFLOWER, BUGS, HUMANS_GARBAGE, KING, MOUSES, SNAKES, SPIDERS -> pickAnItem(npcId);
             case POT -> interactWithPot();
@@ -76,12 +76,12 @@ public class ActivationActions {
     /**
      * Picks up an item from the non-playable character (NPC).
      *
-     * @param npcIdentity  the NPC identity
+     * @param charactersIdentity  the NPC identity
      */
-    private void pickAnItem(NPCIdentity npcIdentity) {
+    private void pickAnItem(CharactersIdentity charactersIdentity) {
         if (witch.getPotionHeld() == null) {
-            LoggingHandler.logInfo("Item picked: " + npcIdentity);
-            witch.setItemHeld(npcIdentity.getNPCItem());
+            LoggingHandler.logInfo("Item picked: " + charactersIdentity);
+            witch.setItemHeld(charactersIdentity.getNPCItem());
         }
     }
 

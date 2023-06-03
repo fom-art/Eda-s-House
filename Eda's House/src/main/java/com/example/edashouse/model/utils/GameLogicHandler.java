@@ -2,7 +2,7 @@ package com.example.edashouse.model.utils;
 
 import com.example.edashouse.LoggingHandler;
 import com.example.edashouse.model.constants.Characters;
-import com.example.edashouse.model.constants.Constants;
+import com.example.edashouse.model.constants.utils.Constants;
 import com.example.edashouse.model.units.NonPlayableCharacters;
 import com.example.edashouse.model.units.npc.*;
 

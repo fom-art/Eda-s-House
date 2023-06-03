@@ -1,4 +1,4 @@
-package com.example.edashouse.model.constants;
+package com.example.edashouse.model.constants.characters_data;
 
 /**
  * Constants representing different actions triggered by key presses.

@@ -1,8 +1,8 @@
 package com.example.edashouse.model.utils;
 
 import com.example.edashouse.LoggingHandler;
-import com.example.edashouse.model.constants.ActionsConstants;
-import com.example.edashouse.model.constants.Constants;
+import com.example.edashouse.model.constants.characters_data.ActionsConstants;
+import com.example.edashouse.model.constants.utils.Constants;
 
 public class CoordinatesCounter {
     /**

@@ -1,7 +1,7 @@
 package com.example.edashouse.model.units;
 
 import com.example.edashouse.model.constants.Characters;
-import com.example.edashouse.model.constants.NPCIdentity;
+import com.example.edashouse.model.constants.characters_data.CharactersIdentity;
 
 /**
  * A base class for non-playable characters in the game.
@@ -11,7 +11,7 @@ public abstract class NonPlayableCharacters {
     private Characters character;
     private Integer characterViewCode;
     private boolean isToBeActivated = false;
-    private NPCIdentity npcId;
+    private CharactersIdentity npcId;
 
     /**
      * Gets the image URL of the non-playable character.
@@ -54,7 +54,7 @@ public abstract class NonPlayableCharacters {
      *
      * @return the identity
      */
-    public NPCIdentity getNPCId() {
+    public CharactersIdentity getNPCId() {
         return this.npcId;
     }
 
@@ -99,7 +99,7 @@ public abstract class NonPlayableCharacters {
      *
      * @param npcId the identity to set
      */
-    public void setNPCId(NPCIdentity npcId) {
+    public void setNPCId(CharactersIdentity npcId) {
         this.npcId = npcId;
     }
 }

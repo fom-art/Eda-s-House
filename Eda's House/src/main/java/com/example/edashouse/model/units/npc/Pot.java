@@ -1,6 +1,8 @@
 package com.example.edashouse.model.units.npc;
 
 import com.example.edashouse.model.constants.*;
+import com.example.edashouse.model.constants.characters_data.CharactersIdentity;
+import com.example.edashouse.model.constants.utils.ImageURL;
 import com.example.edashouse.model.units.NonPlayableCharacters;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ public class Pot  extends NonPlayableCharacters {
         setImageURL(ImageURL.POT.getURL());
         setCharacter(Characters.POT);
         setCharacterViewCode(Characters.POT);
-        setNPCId(NPCIdentity.POT);
+        setNPCId(CharactersIdentity.POT);
     }
 
     public void addItemToPot(Items item) {

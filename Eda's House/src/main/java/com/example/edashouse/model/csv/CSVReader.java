@@ -18,13 +18,14 @@ public class CSVReader {
         int[] result = new int[2];
         String line = "";
         String splitBy = ",";
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/main/java/com/example/edashouse/model/csv/CSVCharactersCoordinates.csv"));
+        try (FileReader fileReader = new FileReader("src/main/java/com/example/edashouse/model/csv/CSVCharactersCoordinates.csv")){
+            BufferedReader reader = new BufferedReader(fileReader);
             for (int i = 0; i <= characterIndex; i++) {
                 line = reader.readLine();
                 String[] splitOfLine = line.split(splitBy);
                 result = new int[]{Integer.parseInt(splitOfLine[0]), Integer.parseInt(splitOfLine[1])};
             }
+            reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

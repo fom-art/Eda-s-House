@@ -1,4 +1,4 @@
-package com.example.edashouse.model.constants;
+package com.example.edashouse.model.constants.utils;
 
 /**
  * Constants used in the game.

@@ -1,6 +1,6 @@
 package com.example.edashouse.controller;
 
-import com.example.edashouse.model.constants.ActionsConstants;
+import com.example.edashouse.model.constants.characters_data.ActionsConstants;
 import com.example.edashouse.model.constants.Characters;
 import com.example.edashouse.model.units.Witch;
 import com.example.edashouse.model.utils.GameLogicHandler;

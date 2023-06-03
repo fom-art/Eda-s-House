@@ -1,9 +1,9 @@
 package com.example.edashouse.view;
 
 import com.example.edashouse.model.constants.Characters;
-import com.example.edashouse.model.constants.Constants;
-import com.example.edashouse.model.constants.ImageURL;
-import com.example.edashouse.model.constants.NPCIdentity;
+import com.example.edashouse.model.constants.utils.Constants;
+import com.example.edashouse.model.constants.utils.ImageURL;
+import com.example.edashouse.model.constants.characters_data.CharactersIdentity;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -46,7 +46,7 @@ public class ItemsPickedActivator {
      *
      * @param npcId the NPC identity
      */
-    private void updatePickedItemViewImage(NPCIdentity npcId) {
+    private void updatePickedItemViewImage(CharactersIdentity npcId) {
         // TODO: Implement the logic to update the image of the picked item view based on the NPC identity
     }
 }

@@ -12,6 +12,8 @@ public class GameController extends Application {
     private ItemsPickedActivator itemPickedView;
     private SceneListenersSetter sceneListenersSetter;
 
+    // TODO Reformat NPC class to enum, make the changes to code accordingly
+
     /**
      * Starts the application by initializing the stage and setting up the layout.
      *

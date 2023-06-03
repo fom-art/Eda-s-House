@@ -1,8 +1,8 @@
 package com.example.edashouse.view;
 
 import com.example.edashouse.model.constants.Characters;
-import com.example.edashouse.model.constants.Constants;
-import com.example.edashouse.model.constants.ImageURL;
+import com.example.edashouse.model.constants.utils.Constants;
+import com.example.edashouse.model.constants.utils.ImageURL;
 import com.example.edashouse.model.units.NonPlayableCharacters;
 import com.example.edashouse.model.units.npc.*;
 import com.example.edashouse.model.utils.GameLogicHandler;

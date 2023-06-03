@@ -1,4 +1,4 @@
-import com.example.edashouse.model.constants.ActionsConstants;
+import com.example.edashouse.model.constants.characters_data.ActionsConstants;
 import com.example.edashouse.model.utils.CoordinatesCounter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;

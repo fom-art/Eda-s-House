@@ -1,8 +1,8 @@
 package com.example.edashouse.model.units;
 
-import com.example.edashouse.model.constants.ActionsConstants;
+import com.example.edashouse.model.constants.characters_data.ActionsConstants;
 import com.example.edashouse.model.constants.Characters;
-import com.example.edashouse.model.constants.ImageURL;
+import com.example.edashouse.model.constants.utils.ImageURL;
 import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.model.constants.Potions;
 

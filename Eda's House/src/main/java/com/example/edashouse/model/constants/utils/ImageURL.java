@@ -1,4 +1,4 @@
-package com.example.edashouse.model.constants;
+package com.example.edashouse.model.constants.utils;
 
 /**
  * URLs of images used in the game.
@@ -44,4 +44,5 @@ public enum ImageURL {
     public String getURL() {
         return url;
     }
+
 }
