@@ -3,7 +3,7 @@ package com.example.edashouse.model.utils;
 import com.example.edashouse.LoggingHandler;
 import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.model.constants.Potions;
-import com.example.edashouse.model.units.npc.Pot;
+import com.example.edashouse.model.units.Pot;
 
 import java.util.ArrayList;
 import java.util.Arrays;

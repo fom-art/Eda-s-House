@@ -1,9 +1,10 @@
-package com.example.edashouse.model.units.npc;
+package com.example.edashouse.model.units;
 
-import com.example.edashouse.model.constants.*;
+import com.example.edashouse.model.constants.Characters;
+import com.example.edashouse.model.constants.Items;
+import com.example.edashouse.model.constants.Potions;
 import com.example.edashouse.model.constants.characters_data.CharactersIdentity;
 import com.example.edashouse.model.constants.utils.ImageURL;
-import com.example.edashouse.model.units.NonPlayableCharacters;
 
 import java.util.ArrayList;
 

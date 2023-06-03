@@ -7,7 +7,7 @@ import com.example.edashouse.model.constants.characters_data.CharactersIdentity;
 import com.example.edashouse.model.constants.Potions;
 import com.example.edashouse.model.units.NonPlayableCharacters;
 import com.example.edashouse.model.units.Witch;
-import com.example.edashouse.model.units.npc.Pot;
+import com.example.edashouse.model.units.Pot;
 import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.model.utils.PotionsLogicHandler;
 import com.example.edashouse.view.Layout;

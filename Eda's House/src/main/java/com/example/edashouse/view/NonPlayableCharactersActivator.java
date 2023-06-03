@@ -4,6 +4,8 @@ import com.example.edashouse.model.constants.Characters;
 import com.example.edashouse.model.constants.utils.Constants;
 import com.example.edashouse.model.constants.utils.ImageURL;
 import com.example.edashouse.model.units.NonPlayableCharacters;
+import com.example.edashouse.model.units.Pot;
+import com.example.edashouse.model.units.Windowsill;
 import com.example.edashouse.model.units.npc.*;
 import com.example.edashouse.model.utils.GameLogicHandler;
 import javafx.scene.image.Image;
