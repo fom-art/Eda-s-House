@@ -5,8 +5,6 @@ import com.example.edashouse.model.constants.utils.Constants;
 import com.example.edashouse.model.constants.utils.ImageURL;
 import com.example.edashouse.model.units.NonPlayableCharacters;
 import com.example.edashouse.model.units.Pot;
-import com.example.edashouse.model.units.Windowsill;
-import com.example.edashouse.model.units.npc.*;
 import com.example.edashouse.model.utils.GameLogicHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,81 +31,9 @@ public class NonPlayableCharactersActivator {
      * Sets up the non-playable characters.
      */
     private void setUpNPCharacters() {
-        setUpBellflower();
-        setUpBugs();
-        setUpHumansGarbage();
-        setUpKing();
-        setUpMouses();
-        setUpPot();
-        setUpSnakes();
-        setUpSpiders();
-        setUpWindowSill();
-        setActiveIcon();
+
     }
 
-    /**
-     * Sets up the bellflower character.
-     */
-    private void setUpBellflower() {
-        setUpNonPlayableCharacter(new BellFlower());
-    }
-
-    /**
-     * Sets up the bugs character.
-     */
-    private void setUpBugs() {
-        setUpNonPlayableCharacter(new Bugs());
-    }
-
-    /**
-     * Sets up the humans' garbage character.
-     */
-    private void setUpHumansGarbage() {
-        setUpNonPlayableCharacter(new HumansGarbage());
-    }
-
-    /**
-     * Sets up the king character.
-     */
-    private void setUpKing() {
-        setUpNonPlayableCharacter(new King());
-    }
-
-    /**
-     * Sets up the mice characters.
-     */
-    private void setUpMouses() {
-        setUpNonPlayableCharacter(new Mouses());
-    }
-
-    /**
-     * Sets up the pot character.
-     */
-    private void setUpPot() {
-        pot = new Pot();
-        setUpNonPlayableCharacter(pot);
-    }
-
-    /**
-     * Sets up the snake characters.
-     */
-    private void setUpSnakes() {
-        setUpNonPlayableCharacter(new Snakes());
-    }
-
-    /**
-     * Sets up the spider characters.
-     */
-    private void setUpSpiders() {
-        setUpNonPlayableCharacter(new Spiders());
-    }
-
-    /**
-     * Sets up the window sill character.
-     */
-    private void setUpWindowSill() {
-        setUpNonPlayableCharacter(new Windowsill());
-    }
 
     /**
      * Sets up the active icon.
