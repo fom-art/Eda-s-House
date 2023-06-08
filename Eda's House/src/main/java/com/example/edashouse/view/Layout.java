@@ -1,12 +1,11 @@
 package com.example.edashouse.view;
 
 import com.example.edashouse.LoggingHandler;
+import com.example.edashouse.model.constants.Characters;
+import com.example.edashouse.model.constants.characters.PlayableCharacter;
 import com.example.edashouse.model.constants.characters_data.ActionsConstants;
 import com.example.edashouse.model.constants.utils.Constants;
 import com.example.edashouse.model.constants.utils.ImageURL;
-import com.example.edashouse.model.units.NonPlayableCharacters;
-import com.example.edashouse.model.units.Witch;
-import com.example.edashouse.model.constants.*;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,11 +14,9 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class Layout {
-    private HashMap<Characters, NonPlayableCharacters> npcHashMap = new HashMap<>();
-    private Witch witch;
+    private PlayableCharacter witch;
     private Pane pane;
     private Scene scene;
     private final Stage stage;
@@ -62,7 +59,7 @@ public class Layout {
      *
      * @return the witch character
      */
-    public Witch getWitch() {
+    public PlayableCharacter getWitch() {
         return this.witch;
     }
 
@@ -73,7 +70,6 @@ public class Layout {
         setPane();
         setScene();
         setStage();
-        test();
     }
 
     /**
@@ -118,19 +114,12 @@ public class Layout {
     }
 
     /**
-     * A placeholder method for testing.
-     */
-    private void test() {
-        // TODO: Implement the test logic
-    }
-
-    /**
      * Adds the witch character to the layout.
      */
     public void addWitch() {
-        witch = new Witch(Characters.WITCH.getCoordinates());
+        witch = PlayableCharacter.WITCH;
         // Initialize the image
-        Image image = new Image(witch.getImagePath());
+        Image image = new Image(witch.getCurrentImageURL());
         ImageView witchView = new ImageView(image);
         // Set sizes
         witchView.setFitWidth(Constants.GRID_CELL_SIZE.getValue());
@@ -165,11 +154,11 @@ public class Layout {
      */
     public void updateWitchImage(ActionsConstants direction) {
         // Update the witch data
-        witch.setImage(direction);
+        witch.setImageURLFromAction(direction);
         // Get witch view from pane
         ImageView witchView = (ImageView) pane.getChildren().get(Characters.WITCH.getIndex());
         // Initialize the image
-        Image image = new Image(witch.getImagePath());
+        Image image = new Image(witch.getCurrentImageURL());
         // Update the image
         witchView.setImage(image);
     }

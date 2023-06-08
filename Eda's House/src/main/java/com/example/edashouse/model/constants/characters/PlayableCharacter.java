@@ -8,22 +8,36 @@ import com.example.edashouse.model.constants.characters_data.Coordinates;
 import com.example.edashouse.model.constants.utils.ImageURL;
 
 public enum PlayableCharacter {
-    WITCH(Coordinates.WITCH.getCoordinates(), CharactersIdentity.WITCH, ImageURL.WITCH_FRONT, ActionsConstants.DOWN_KEY_PRESSED);
+    WITCH(Coordinates.WITCH.getCoordinates(), CharactersIdentity.WITCH,
+            ActionsConstants.DOWN_KEY_PRESSED,
+            ImageURL.WITCH_FRONT, ImageURL.WITCH_BACK,
+            ImageURL.WITCH_LEFT, ImageURL.WITCH_RIGHT);
 
-    private final int[] coordinates;
+    private int[] coordinates;
     private final CharactersIdentity charactersIdentity;
-    private ImageURL imageURL;
+    private String currentImageURL;
     private Items itemHeld;
     private ActionsConstants lastAction;
     private Potions potionHeld;
+    private final String imageFrontURL;
+    private final String imageBackURL;
+    private final String imageLeftURL;
+    private final String imageRightURL;
 
-    PlayableCharacter(int[] coordinates, CharactersIdentity charactersIdentity, ImageURL imageURL, ActionsConstants lastAction) {
+    PlayableCharacter(int[] coordinates, CharactersIdentity charactersIdentity,
+                      ActionsConstants lastAction,
+                      ImageURL imageFrontURL, ImageURL imageBackURL,
+                      ImageURL imageLeftURL, ImageURL imageRightURL) {
         this.coordinates = coordinates;
         this.charactersIdentity = charactersIdentity;
-        this.imageURL = imageURL;
         this.itemHeld = null;
         this.lastAction = lastAction;
         this.potionHeld = null;
+        this.imageFrontURL = imageFrontURL.getURL();
+        this.imageBackURL = imageBackURL.getURL();
+        this.imageLeftURL = imageLeftURL.getURL();
+        this.imageRightURL = imageRightURL.getURL();
+        this.currentImageURL = imageFrontURL.getURL();
     }
 
 
@@ -35,12 +49,20 @@ public enum PlayableCharacter {
         return charactersIdentity;
     }
 
-    public ImageURL getImageURL() {
-        return imageURL;
+    public String getCurrentImageURL() {
+        return currentImageURL;
     }
 
-    public void setImageURL(ImageURL imageURL) {
-        this.imageURL = imageURL;
+    public void setCoordinates(int[] coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public void setCurrentImageURL(ImageURL currentImageURL) {
+        this.currentImageURL = currentImageURL.getURL();
+    }
+
+    public void setCurrentImageURL(String currentImageURL) {
+        this.currentImageURL = currentImageURL;
     }
 
     public Items getItemHeld() {
@@ -65,5 +87,22 @@ public enum PlayableCharacter {
 
     public void setPotionHeld(Potions potionHeld) {
         this.potionHeld = potionHeld;
+    }
+
+    public void setImageURLFromAction(ActionsConstants action) {
+        switch (action) {
+            case DOWN_KEY_PRESSED -> {
+                setCurrentImageURL(imageFrontURL);
+            }
+            case UP_KEY_PRESSED -> {
+                setCurrentImageURL(imageBackURL);
+            }
+            case LEFT_KEY_PRESSED -> {
+                setCurrentImageURL(imageLeftURL);
+            }
+            case RIGHT_KEY_PRESSED -> {
+                setCurrentImageURL(imageRightURL);
+            }
+        }
     }
 }

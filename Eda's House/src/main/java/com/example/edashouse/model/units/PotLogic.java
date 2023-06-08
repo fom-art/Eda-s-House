@@ -1,24 +1,17 @@
 package com.example.edashouse.model.units;
 
-import com.example.edashouse.model.constants.Characters;
 import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.model.constants.Potions;
-import com.example.edashouse.model.constants.characters_data.CharactersIdentity;
-import com.example.edashouse.model.constants.utils.ImageURL;
 
 import java.util.ArrayList;
 
-public class Pot  extends NonPlayableCharacters {
+public class PotLogic {
     ArrayList<Items> items;
     Potions potionResult;
     Items itemResult;
 
-    public Pot() {
+    public PotLogic() {
         items = new ArrayList<>();
-        setImageURL(ImageURL.POT.getURL());
-        setCharacter(Characters.POT);
-        setCharacterViewCode(Characters.POT);
-        setNPCId(CharactersIdentity.POT);
     }
 
     public void addItemToPot(Items item) {

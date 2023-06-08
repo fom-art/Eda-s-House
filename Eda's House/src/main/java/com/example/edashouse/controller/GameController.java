@@ -26,6 +26,6 @@ public class GameController extends Application {
         layout.addWitch();
         npcView = new NonPlayableCharactersActivator(layout);
         itemPickedView = new ItemsPickedActivator(layout);
-        sceneListenersSetter = new SceneListenersSetter(layout.getScene(), layout, npcView);
+        sceneListenersSetter = new SceneListenersSetter(layout.getScene(), npcView, layout);
     }
 }

@@ -9,10 +9,8 @@ public enum Items {
     HUMANS_GARBAGE,
     KING,
     MOUSES,
-    POT,
     SNAKES,
     SPIDERS,
-    WINDOWSILL,
     SNAKES_OIL,
     EMPTY_ITEM
 }

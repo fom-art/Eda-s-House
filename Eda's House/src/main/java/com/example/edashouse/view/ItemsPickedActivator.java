@@ -4,6 +4,8 @@ import com.example.edashouse.model.constants.Characters;
 import com.example.edashouse.model.constants.utils.Constants;
 import com.example.edashouse.model.constants.utils.ImageURL;
 import com.example.edashouse.model.constants.characters_data.CharactersIdentity;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -29,7 +31,8 @@ public class ItemsPickedActivator {
         pickedItemView.setLayoutX(Characters.PICKED_ITEM.getCoordinates()[0]);
         pickedItemView.setLayoutY(Characters.PICKED_ITEM.getCoordinates()[1]);
         // Add to Pane
-        layout.getPane().getChildren().add(Characters.PICKED_ITEM.getIndex(), pickedItemView);
+        ObservableList<Node> children = layout.getPane().getChildren();
+        children.add(Characters.PICKED_ITEM.getIndex(), pickedItemView);
     }
 
     /**

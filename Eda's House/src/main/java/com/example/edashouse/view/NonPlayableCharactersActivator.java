@@ -1,37 +1,31 @@
 package com.example.edashouse.view;
 
 import com.example.edashouse.model.constants.Characters;
+import com.example.edashouse.model.constants.characters.NonPlayableCharacters;
 import com.example.edashouse.model.constants.utils.Constants;
 import com.example.edashouse.model.constants.utils.ImageURL;
-import com.example.edashouse.model.units.NonPlayableCharacters;
-import com.example.edashouse.model.units.Pot;
 import com.example.edashouse.model.utils.GameLogicHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class NonPlayableCharactersActivator {
     private Layout layout;
-    private Pot pot;
 
     public NonPlayableCharactersActivator(Layout layout) {
         this.layout = layout;
         setUpNPCharacters();
+        setActiveIcon();
     }
 
-    /**
-     * Gets the pot character.
-     *
-     * @return the pot character
-     */
-    public Pot getPot() {
-        return this.pot;
-    }
 
     /**
      * Sets up the non-playable characters.
      */
     private void setUpNPCharacters() {
-
+        for (NonPlayableCharacters npc : NonPlayableCharacters.values()
+        ) {
+            setUpNonPlayableCharacter(npc);
+        }
     }
 
 
@@ -65,10 +59,10 @@ public class NonPlayableCharactersActivator {
         npcView.setFitWidth(Constants.GRID_CELL_SIZE.getValue());
         npcView.setFitHeight(Constants.GRID_CELL_SIZE.getValue());
         // Set coordinates
-        npcView.setLayoutX(npc.getCharacter().getCoordinates()[0]);
-        npcView.setLayoutY(npc.getCharacter().getCoordinates()[1]);
+        npcView.setLayoutX(npc.getCoordinates()[0]);
+        npcView.setLayoutY(npc.getCoordinates()[1]);
         // Add to Pane
-        layout.getPane().getChildren().add(npc.getCharacterViewCode(), npcView);
+        layout.getPane().getChildren().add(npc.getNpcId().getCharacterIndex(), npcView);
     }
 
     /**
@@ -76,7 +70,7 @@ public class NonPlayableCharactersActivator {
      *
      * @param character the character to set as active
      */
-    public void setActive(Characters character) {
+    public void setActive(NonPlayableCharacters character) {
         int[] characterCoordinates = character.getCoordinates().clone();
         // Get new position for active icon
         int[] newActiveIconPosition = GameLogicHandler.getPositionForActiveIcon(characterCoordinates);

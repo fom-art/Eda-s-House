@@ -3,7 +3,7 @@ package com.example.edashouse.model.utils;
 import com.example.edashouse.LoggingHandler;
 import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.model.constants.Potions;
-import com.example.edashouse.model.units.Pot;
+import com.example.edashouse.model.units.PotLogic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,22 +12,22 @@ public class PotionsLogicHandler {
     /**
      * Creates a potion based on the items present in the Pot object.
      *
-     * @param pot the Pot object containing the items
+     * @param potLogic the Pot object containing the items
      */
-    public static void createPotion(Pot pot) {
+    public static void createPotion(PotLogic potLogic) {
         LoggingHandler.logInfo("Potion is to be made");
-        Items[] ingredientsArray = getArrayFromList(pot.getItemsPut());
+        Items[] ingredientsArray = getArrayFromList(potLogic.getItemsPut());
         Potions potion = getPotionFromIngredients(ingredientsArray);
         Items snakeOilSlot;
         if (potion == null) {
             snakeOilSlot = createSnakesOil(ingredientsArray);
             if (snakeOilSlot != null) {
-                pot.setItemResult(snakeOilSlot);
+                potLogic.setItemResult(snakeOilSlot);
             } else {
-                pot.setPotionResult(Potions.SUSPICIOUS_POTION);
+                potLogic.setPotionResult(Potions.SUSPICIOUS_POTION);
             }
         } else {
-            pot.setPotionResult(potion);
+            potLogic.setPotionResult(potion);
         }
     }
 
