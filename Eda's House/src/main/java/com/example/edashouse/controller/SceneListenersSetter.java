@@ -11,24 +11,25 @@ import javafx.scene.Scene;
  * The reactions to the key presses are implemented through the associated actions.
  */
 public class SceneListenersSetter {
-    private Scene scene;
-    private MovementActions movementActions;
-    private ActivationActions activationActions;
+    private final Scene scene;
+    private final MovementActions movementActions;
+    private final ActivationActions activationActions;
     private NonPlayableCharactersActivator npcView;
-    private GameLogicHandler gameLogicHandler;
+    private final GameLogicHandler gameLogicHandler;
 
     /**
      * Constructs a new instance of SceneListenersSetter.
      *
      * @param scene   the scene to set up listeners for
+     * @param npcView the non-playable characters activator
      * @param layout  the game layout
      */
-    public SceneListenersSetter(Scene scene, NonPlayableCharactersActivator npcView,  Layout layout) {
+    public SceneListenersSetter(Scene scene, NonPlayableCharactersActivator npcView, Layout layout) {
         this.scene = scene;
+        this.npcView = npcView;
         this.gameLogicHandler = new GameLogicHandler();
         this.movementActions = new MovementActions(layout, npcView, gameLogicHandler);
         this.activationActions = new ActivationActions(layout, gameLogicHandler);
-        this.npcView = npcView;
         setUp();
     }
 

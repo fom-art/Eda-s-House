@@ -55,6 +55,8 @@ public class ActivationActions {
 
     /**
      * Performs the action associated with the non-playable character (NPC) identity.
+     *
+     * @param npc the non-playable character to perform the action
      */
     private void makeAnAction(NonPlayableCharacters npc) {
         switch (npc) {
@@ -66,6 +68,8 @@ public class ActivationActions {
 
     /**
      * Picks up an item from the non-playable character (NPC).
+     *
+     * @param item the item to pick up
      */
     private void pickAnItem(Items item) {
         if (witch.getPotionHeld() == null) {
@@ -134,7 +138,6 @@ public class ActivationActions {
 
     /**
      * Starts the process of making a potion with the pot non-playable character (NPC).
-     *
      */
     private void startMakingPotion() {
         PotionsLogicHandler.createPotion(potLogic);

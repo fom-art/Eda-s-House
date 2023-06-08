@@ -1,22 +1,12 @@
 package com.example.edashouse.model.utils;
 
 import com.example.edashouse.LoggingHandler;
-import com.example.edashouse.model.constants.Characters;
 import com.example.edashouse.model.constants.characters.NonPlayableCharacters;
 import com.example.edashouse.model.constants.utils.Constants;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameLogicHandler {
-    private Characters[] objectsCoordinates;
-    private ArrayList<NonPlayableCharacters> npcList;
-
-    /**
-     * Constructs a GameLogicHandler object and initializes the forbidden coordinates and NPC list.
-     */
-
-
     /**
      * Checks if the new coordinates are a valid move.
      *

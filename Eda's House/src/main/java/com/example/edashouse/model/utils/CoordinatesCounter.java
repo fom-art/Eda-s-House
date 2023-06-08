@@ -4,7 +4,11 @@ import com.example.edashouse.LoggingHandler;
 import com.example.edashouse.model.constants.characters_data.ActionsConstants;
 import com.example.edashouse.model.constants.utils.Constants;
 
+/**
+ * Utility class for calculating coordinates and movements in the game.
+ */
 public class CoordinatesCounter {
+
     /**
      * Calculates the coordinates based on the given X and Y coordinates.
      *
@@ -41,30 +45,31 @@ public class CoordinatesCounter {
     public static int[] getNextSquareFromDirection(ActionsConstants direction, int[] coordinates, boolean isForNPCActivation) {
         GameLogicHandler gameLogicHandler = new GameLogicHandler();
         switch (direction) {
-            case LEFT_KEY_PRESSED -> {
+            case LEFT_KEY_PRESSED:
                 return getCoordinatesFromLeft(coordinates, gameLogicHandler, isForNPCActivation);
-            }
-            case RIGHT_KEY_PRESSED -> {
+            case RIGHT_KEY_PRESSED:
                 return getCoordinatesFromRight(coordinates, gameLogicHandler, isForNPCActivation);
-            }
-            case UP_KEY_PRESSED -> {
+            case UP_KEY_PRESSED:
                 return getCoordinatesFromAbove(coordinates, gameLogicHandler, isForNPCActivation);
-            }
-            case DOWN_KEY_PRESSED -> {
+            case DOWN_KEY_PRESSED:
                 return getCoordinatesFromBelow(coordinates, gameLogicHandler, isForNPCActivation);
-            }
         }
         return null;
     }
 
+    /**
+     * Calculates the coordinates when moving left from the current coordinates.
+     * If the desired new point is not a wall or an object, it returns the new coordinates.
+     * Otherwise, it returns the old coordinates.
+     *
+     * @param oldCoordinates       the current coordinates
+     * @param gameLogicHandler     the game logic handler
+     * @param isForNPCActivation   specifies if the movement is for NPC activation
+     * @return the new coordinates if the move is valid, otherwise the old coordinates
+     */
     private static int[] getCoordinatesFromLeft(int[] oldCoordinates, GameLogicHandler gameLogicHandler, boolean isForNPCActivation) {
         int[] newCoordinates = new int[]{oldCoordinates[0] - Constants.GRID_CELL_SIZE.getValue(), oldCoordinates[1]};
-        //If the desired new point, is not a wall, or an object, it returns the
-        //desired new coordinate, else, it returns the old coordinates, therefore
-        //the character doesn't change its position
-        if (
-                oldCoordinates[0] != 0
-        ) {
+        if (oldCoordinates[0] != 0) {
             if (gameLogicHandler.isValidMove(newCoordinates) || isForNPCActivation) {
                 LoggingHandler.logInfo("MOVED LEFT");
                 return newCoordinates;
@@ -73,14 +78,19 @@ public class CoordinatesCounter {
         return oldCoordinates;
     }
 
+    /**
+     * Calculates the coordinates when moving right from the current coordinates.
+     * If the desired new point is not a wall or an object, it returns the new coordinates.
+     * Otherwise, it returns the old coordinates.
+     *
+     * @param oldCoordinates       the current coordinates
+     * @param gameLogicHandler     the game logic handler
+     * @param isForNPCActivation   specifies if the movement is for NPC activation
+     * @return the new coordinates if the move is valid, otherwise the old coordinates
+     */
     private static int[] getCoordinatesFromRight(int[] oldCoordinates, GameLogicHandler gameLogicHandler, boolean isForNPCActivation) {
         int[] newCoordinates = new int[]{oldCoordinates[0] + Constants.GRID_CELL_SIZE.getValue(), oldCoordinates[1]};
-        //If the desired new point, is not a wall, or an object, it returns the
-        //desired new coordinate, else, it returns the old coordinates, therefore
-        //the character doesn't change its position
-        if (
-                oldCoordinates[0] != Constants.GRID_CELL_SIZE.getValue() * (Constants.GRID_SIZE_IN_CELLS.getValue() - 1)
-        ) {
+        if (oldCoordinates[0] != Constants.GRID_CELL_SIZE.getValue() * (Constants.GRID_SIZE_IN_CELLS.getValue() - 1)) {
             if (gameLogicHandler.isValidMove(newCoordinates) || isForNPCActivation) {
                 LoggingHandler.logInfo("MOVED RIGHT");
                 return newCoordinates;
@@ -89,14 +99,19 @@ public class CoordinatesCounter {
         return oldCoordinates;
     }
 
+    /**
+     * Calculates the coordinates when moving down from the current coordinates.
+     * If the desired new point is not a wall or an object, it returns the new coordinates.
+     * Otherwise, it returns the old coordinates.
+     *
+     * @param oldCoordinates       the current coordinates
+     * @param gameLogicHandler     the game logic handler
+     * @param isForNPCActivation   specifies if the movement is for NPC activation
+     * @return the new coordinates if the move is valid, otherwise the old coordinates
+     */
     private static int[] getCoordinatesFromBelow(int[] oldCoordinates, GameLogicHandler gameLogicHandler, boolean isForNPCActivation) {
         int[] newCoordinates = new int[]{oldCoordinates[0], oldCoordinates[1] + Constants.GRID_CELL_SIZE.getValue()};
-        //If the desired new point, is not a wall, or an object, it returns the
-        //desired new coordinate, else, it returns the old coordinates, therefore
-        //the character doesn't change its position
-        if (
-                oldCoordinates[1] != Constants.GRID_CELL_SIZE.getValue() * (Constants.GRID_SIZE_IN_CELLS.getValue() - 1)
-        ) {
+        if (oldCoordinates[1] != Constants.GRID_CELL_SIZE.getValue() * (Constants.GRID_SIZE_IN_CELLS.getValue() - 1)) {
             if (gameLogicHandler.isValidMove(newCoordinates) || isForNPCActivation) {
                 LoggingHandler.logInfo("MOVED DOWN");
                 return newCoordinates;
@@ -105,14 +120,19 @@ public class CoordinatesCounter {
         return oldCoordinates;
     }
 
+    /**
+     * Calculates the coordinates when moving up from the current coordinates.
+     * If the desired new point is not a wall or an object, it returns the new coordinates.
+     * Otherwise, it returns the old coordinates.
+     *
+     * @param oldCoordinates       the current coordinates
+     * @param gameLogicHandler     the game logic handler
+     * @param isForNPCActivation   specifies if the movement is for NPC activation
+     * @return the new coordinates if the move is valid, otherwise the old coordinates
+     */
     private static int[] getCoordinatesFromAbove(int[] oldCoordinates, GameLogicHandler gameLogicHandler, boolean isForNPCActivation) {
         int[] newCoordinates = new int[]{oldCoordinates[0], oldCoordinates[1] - Constants.GRID_CELL_SIZE.getValue()};
-        //If the desired new point, is not a wall, or an object, it returns the
-        //desired new coordinate, else, it returns the old coordinates, therefore
-        //the character doesn't change its position
-        if (
-                oldCoordinates[1] != 0
-        ) {
+        if (oldCoordinates[1] != 0) {
             if (gameLogicHandler.isValidMove(newCoordinates) || isForNPCActivation) {
                 LoggingHandler.logInfo("MOVED UP");
                 return newCoordinates;

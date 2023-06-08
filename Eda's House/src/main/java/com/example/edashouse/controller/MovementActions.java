@@ -42,6 +42,11 @@ public class MovementActions {
         }
     }
 
+    /**
+     * Moves the playable character in the specified direction.
+     *
+     * @param action the direction of the movement
+     */
     private void moveHero(ActionsConstants action) {
         PlayableCharacter witch = layout.getWitch();
         int[] witchCoordinates = witch.getCoordinates();
@@ -52,11 +57,21 @@ public class MovementActions {
         setNPCActivation(witch);
     }
 
+    /**
+     * Sets the nearest non-playable character (NPC) as active based on the playable character's position.
+     *
+     * @param witch the playable character
+     */
     private void setNPCActivation(PlayableCharacter witch) {
         unsetNPCActivation();
         setNearestNPCActive(witch);
     }
 
+    /**
+     * Sets the nearest non-playable character (NPC) as active based on the playable character's position and last action.
+     *
+     * @param witch the playable character
+     */
     private void setNearestNPCActive(PlayableCharacter witch) {
         ActionsConstants lastAction = witch.getLastAction();
         int[] witchCoordinates = witch.getCoordinates();
@@ -69,6 +84,9 @@ public class MovementActions {
         }
     }
 
+    /**
+     * Unsets the active non-playable character (NPC) and updates the view.
+     */
     private void unsetNPCActivation() {
         gameLogicHandler.unSetNPCActive();
         npcView.unsetActivation();

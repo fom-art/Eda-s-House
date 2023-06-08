@@ -18,18 +18,18 @@ public enum CharactersIdentity {
     private final Integer index;
 
     /**
-     * Constructs an NPCIdentity enum with the specified associated item.
+     * Constructs a CharactersIdentity enum with the specified index.
      *
-     * @param index
+     * @param index the index associated with the character identity
      */
     CharactersIdentity(Integer index) {
         this.index = index;
     }
 
     /**
-     * Gets the item associated with the NPCIdentity.
+     * Gets the index associated with the character identity.
      *
-     * @return the associated item
+     * @return the index associated with the character identity
      */
     public Integer getCharacterIndex() {
         return this.index;

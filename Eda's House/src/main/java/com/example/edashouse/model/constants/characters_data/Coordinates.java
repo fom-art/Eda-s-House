@@ -4,7 +4,7 @@ import com.example.edashouse.model.csv.CSVReader;
 import com.example.edashouse.model.utils.CoordinatesCounter;
 
 /**
- * Constants representing different actions triggered by key presses.
+ * Constants representing different coordinates of characters in the game.
  */
 public enum Coordinates {
     WITCH(CoordinatesCounter.calculateCoordinates(CSVReader.readCoordinatesOfCharacters(0))),
@@ -22,10 +22,20 @@ public enum Coordinates {
 
     private final int[] coordinates;
 
+    /**
+     * Constructs a Coordinates enum with the specified coordinates.
+     *
+     * @param coordinates the coordinates associated with the constant
+     */
     Coordinates(int[] coordinates) {
         this.coordinates = coordinates;
     }
 
+    /**
+     * Gets the coordinates associated with the constant.
+     *
+     * @return the coordinates associated with the constant
+     */
     public int[] getCoordinates() {
         return this.coordinates;
     }

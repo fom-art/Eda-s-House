@@ -6,13 +6,15 @@ import com.example.edashouse.view.NonPlayableCharactersActivator;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * The main game controller class that extends the JavaFX Application class.
+ * It initializes the stage and sets up the game layout.
+ */
 public class GameController extends Application {
     private Layout layout;
     private NonPlayableCharactersActivator npcView;
     private ItemsPickedActivator itemPickedView;
     private SceneListenersSetter sceneListenersSetter;
-
-    // TODO Reformat NPC class to enum, make the changes to code accordingly
 
     /**
      * Starts the application by initializing the stage and setting up the layout.
