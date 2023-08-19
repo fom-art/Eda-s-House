@@ -13,9 +13,9 @@ import static com.example.edashouse.model.utils.CoordinatesCounter.getNextSquare
  * Controller class that handles movement actions in the game.
  */
 public class MovementActions {
-    private Layout layout;
-    private GameLogicHandler gameLogicHandler;
-    private NonPlayableCharactersActivator npcView;
+    private final Layout layout;
+    private final GameLogicHandler gameLogicHandler;
+    private final NonPlayableCharactersActivator npcView;
 
     /**
      * Constructs a new instance of MovementActions.
@@ -28,6 +28,16 @@ public class MovementActions {
         this.layout = layout;
         this.gameLogicHandler = gameLogicHandler;
         this.npcView = npcView;
+    }
+
+    private Layout getLayout() {
+        return this.layout;
+    }
+    private GameLogicHandler getGameLogicHandler() {
+        return this.gameLogicHandler;
+    }
+    private NonPlayableCharactersActivator getNpcView() {
+        return this.npcView;
     }
 
     /**
@@ -48,12 +58,12 @@ public class MovementActions {
      * @param action the direction of the movement
      */
     private void moveHero(ActionsConstants action) {
-        PlayableCharacter witch = layout.getWitch();
+        PlayableCharacter witch = getLayout().getWitch();
         int[] witchCoordinates = witch.getCoordinates();
         witch.setLastAction(action);
         int[] directionSquare = getNextSquareFromDirection(action, witchCoordinates, false);
-        layout.updateWitchPosition(directionSquare);
-        layout.updateWitchImage(action);
+        getLayout().updateWitchPosition(directionSquare);
+        getLayout().updateWitchImage(action);
         setNPCActivation(witch);
     }
 
@@ -77,10 +87,10 @@ public class MovementActions {
         int[] witchCoordinates = witch.getCoordinates();
         int[] nextSquareCoordinates = getNextSquareFromDirection(lastAction, witchCoordinates, true);
 
-        NonPlayableCharacters nearestNPC = gameLogicHandler.getObjectFromCoordinates(nextSquareCoordinates);
+        NonPlayableCharacters nearestNPC = getGameLogicHandler().getObjectFromCoordinates(nextSquareCoordinates);
         if (nearestNPC != null) {
-            gameLogicHandler.setNPCActive(nearestNPC);
-            npcView.setActive(nearestNPC);
+            getGameLogicHandler().setNPCActive(nearestNPC);
+            getNpcView().setActive(nearestNPC);
         }
     }
 
@@ -88,7 +98,7 @@ public class MovementActions {
      * Unsets the active non-playable character (NPC) and updates the view.
      */
     private void unsetNPCActivation() {
-        gameLogicHandler.unSetNPCActive();
-        npcView.unsetActivation();
+        getGameLogicHandler().unSetNPCActive();
+        getNpcView().unsetActivation();
     }
 }

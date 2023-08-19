@@ -9,8 +9,5 @@
         <module name="EdasHouse" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="EdasHouse" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>

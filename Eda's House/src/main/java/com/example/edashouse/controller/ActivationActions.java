@@ -17,7 +17,7 @@ import com.example.edashouse.view.Layout;
  */
 public class ActivationActions {
     private final GameLogicHandler gameLogicHandler;
-    private final PlayableCharacter witch;
+    public final PlayableCharacter witch;
     private final PotLogic potLogic;
 
     /**
@@ -58,7 +58,7 @@ public class ActivationActions {
      *
      * @param npc the non-playable character to perform the action
      */
-    private void makeAnAction(NonPlayableCharacters npc) {
+    public void makeAnAction(NonPlayableCharacters npc) {
         switch (npc) {
             case BELLFLOWER, BUGS, HUMANS_GARBAGE, KING, MOUSES, SNAKES, SPIDERS -> pickAnItem(npc.getItemDropped());
             case POT -> interactWithPot();
@@ -71,7 +71,7 @@ public class ActivationActions {
      *
      * @param item the item to pick up
      */
-    private void pickAnItem(Items item) {
+    public void pickAnItem(Items item) {
         if (witch.getPotionHeld() == null) {
             LoggingHandler.logInfo("Item picked: " + item);
             witch.setItemHeld(item);
