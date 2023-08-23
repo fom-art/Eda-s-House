@@ -14,7 +14,7 @@ public class SceneListenersSetter {
     private final Scene scene;
     private final MovementActions movementActions;
     private final ActivationActions activationActions;
-    private NonPlayableCharactersActivator npcView;
+    private final NonPlayableCharactersActivator npcView;
     private final GameLogicHandler gameLogicHandler;
 
     /**
@@ -46,10 +46,10 @@ public class SceneListenersSetter {
     private void setupOnKeysPressedActions() {
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case LEFT -> movementActions.receiveAction(ActionsConstants.LEFT_KEY_PRESSED);
-                case RIGHT -> movementActions.receiveAction(ActionsConstants.RIGHT_KEY_PRESSED);
-                case UP -> movementActions.receiveAction(ActionsConstants.UP_KEY_PRESSED);
-                case DOWN -> movementActions.receiveAction(ActionsConstants.DOWN_KEY_PRESSED);
+                case LEFT -> movementActions.receiveAction(ActionsConstants.LEFT_KEY_PRESSED, false);
+                case RIGHT -> movementActions.receiveAction(ActionsConstants.RIGHT_KEY_PRESSED, false);
+                case UP -> movementActions.receiveAction(ActionsConstants.UP_KEY_PRESSED, false);
+                case DOWN -> movementActions.receiveAction(ActionsConstants.DOWN_KEY_PRESSED, false);
                 case F -> activationActions.receiveAction(ActionsConstants.F_KEY_PRESSED);
             }
         });
@@ -62,5 +62,21 @@ public class SceneListenersSetter {
      */
     public GameLogicHandler getGameLogicHandler() {
         return gameLogicHandler;
+    }
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public MovementActions getMovementActions() {
+        return movementActions;
+    }
+
+    public ActivationActions getActivationActions() {
+        return activationActions;
+    }
+
+    public NonPlayableCharactersActivator getNpcView() {
+        return npcView;
     }
 }

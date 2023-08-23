@@ -22,9 +22,9 @@ public class Layout {
     private final Stage stage;
 
 
-    public Layout(Stage stage) {
+    public Layout(Stage stage, boolean isTest) {
         this.stage = stage;
-        setGameLayout();
+        setGameLayout(isTest);
     }
 
     /**
@@ -66,20 +66,24 @@ public class Layout {
     /**
      * Sets up the game layout.
      */
-    public void setGameLayout() {
-        setPane();
-        setScene();
-        setStage();
+    public void setGameLayout(boolean isTest) {
+        setPane(isTest);
+        if (!isTest) {
+            setScene();
+            setStage();
+        }
     }
 
     /**
      * Sets up the pane.
      */
-    private void setPane() {
+    private void setPane(boolean isTest) {
         pane = new Pane();
         pane.setPrefSize(Constants.GRID_CELL_SIZE.getValue() * Constants.GRID_SIZE_IN_CELLS.getValue(),
                 Constants.GRID_CELL_SIZE.getValue() * Constants.GRID_SIZE_IN_CELLS.getValue());
-        setPaneBackground();
+        if (!isTest) {
+            setPaneBackground();
+        }
     }
 
     /**
@@ -107,7 +111,7 @@ public class Layout {
     /**
      * Sets up the background for the pane.
      */
-    private void setPaneBackground() {
+    public void setPaneBackground() throws RuntimeException {
         Image backgroundImage = new Image(ImageURL.BACKGROUND.getURL(), Constants.GRID_CELL_SIZE.getValue() * Constants.GRID_SIZE_IN_CELLS.getValue(), Constants.GRID_CELL_SIZE.getValue() * Constants.GRID_SIZE_IN_CELLS.getValue(), false, false);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
         pane.setBackground(new Background(background));
@@ -116,17 +120,22 @@ public class Layout {
     /**
      * Adds the witch character to the layout.
      */
-    public void addWitch() {
+    public void addWitch(boolean isTest) {
         witch = PlayableCharacter.WITCH;
         // Initialize the image
-        Image image = new Image(witch.getCurrentImageURL());
-        ImageView witchView = new ImageView(image);
+        ImageView witchView;
+        if (!isTest) {
+            Image image = new Image(getWitch().getCurrentImageURL());
+            witchView = new ImageView(image);
+        } else {
+            witchView = new ImageView();
+        }
         // Set sizes
         witchView.setFitWidth(Constants.GRID_CELL_SIZE.getValue());
         witchView.setFitHeight(Constants.GRID_CELL_SIZE.getValue());
         // Set coordinates
-        witchView.setLayoutX(witch.getCoordinates()[0]);
-        witchView.setLayoutY(witch.getCoordinates()[1]);
+        witchView.setLayoutX(getWitch().getCoordinates()[0]);
+        witchView.setLayoutY(getWitch().getCoordinates()[1]);
         // Add to Pane
         pane.getChildren().add(Characters.WITCH.getIndex(), witchView);
     }
@@ -138,9 +147,10 @@ public class Layout {
      */
     public void updateWitchPosition(int[] newCoordinates) {
         // Update the witch data
-        witch.setCoordinates(newCoordinates);
+        getWitch().setCoordinates(newCoordinates);
+        getWitch().setCurrentImageURL("Hueta");
         // Get witch view from pane
-        ImageView witchView = (ImageView) pane.getChildren().get(Characters.WITCH.getIndex());
+        ImageView witchView = (ImageView) getPane().getChildren().get(Characters.WITCH.getIndex());
         // Set coordinates
         LoggingHandler.logInfo(Arrays.toString(newCoordinates));
         witchView.setLayoutX(newCoordinates[0]);
@@ -152,14 +162,17 @@ public class Layout {
      *
      * @param direction the direction of the witch character
      */
-    public void updateWitchImage(ActionsConstants direction) {
+    public void updateWitchImage(ActionsConstants direction, boolean isTest) {
         // Update the witch data
-        witch.setImageURLFromAction(direction);
+        getWitch().setImageURLFromAction(direction);
         // Get witch view from pane
-        ImageView witchView = (ImageView) pane.getChildren().get(Characters.WITCH.getIndex());
-        // Initialize the image
-        Image image = new Image(witch.getCurrentImageURL());
-        // Update the image
-        witchView.setImage(image);
+        ImageView witchView = (ImageView) getPane().getChildren().get(Characters.WITCH.getIndex());
+        if (!isTest){
+            // Initialize the image
+            Image image = new Image(getWitch().getCurrentImageURL());
+            // Update the image
+            witchView.setImage(image);
+        }
+
     }
 }

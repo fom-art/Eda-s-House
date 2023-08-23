@@ -1,27 +1,39 @@
-package complex_test;
+package tests;
 
+import com.example.edashouse.controller.GameController;
 import com.example.edashouse.controller.MovementActions;
 import com.example.edashouse.model.utils.CoordinatesCounter;
-import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.view.Layout;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
+import utils_for_tests.TestUtils;
 
 import static org.mockito.Mockito.mock;
 
 public class MovementSimulationTester {
+    private GameController gameController;
     @Mock
-    private Layout mockedLayout;
+    private Stage stage;
     @Mock
-    private MovementActions mockedMovementActions;
+    private Scene scene;
     @Mock
-    private GameLogicHandler mockedGameLogicHandler;
+    private Layout layout;
+
+    private MovementActions movementActions;
 
     @BeforeEach
     private void init() {
-        mockedMovementActions = mock(MovementActions.class);
+        stage = mock(Stage.class);
+        scene = mock(Scene.class);
+        gameController = new GameController();
+        gameController.startForTest(stage, scene);
+        layout = gameController.getLayout();
+        movementActions = gameController.getSceneListenersSetter().getMovementActions();
     }
 
     @ParameterizedTest
@@ -31,6 +43,9 @@ public class MovementSimulationTester {
         int[] currentCoordinates = CoordinatesCounter.calculateCoordinates(currentX, currentY);
         int[] expectedCoordinates = CoordinatesCounter.calculateCoordinates(expectedX, expectedY);
 
+        simulateWitchPosition(currentCoordinates);
+        movementActions.receiveAction(TestUtils.getDirectionFromNumber(direction), true);
+        Assertions.assertArrayEquals(expectedCoordinates, layout.getWitch().getCoordinates());
     }
 
     @ParameterizedTest
@@ -38,6 +53,10 @@ public class MovementSimulationTester {
     public void testWallHitMovementsCalculation(int currentX, int currentY, int direction) {
         int[] currentCoordinates = CoordinatesCounter.calculateCoordinates(currentX, currentY);
         int[] expectedCoordinates = CoordinatesCounter.calculateCoordinates(currentX, currentY);
+
+        simulateWitchPosition(currentCoordinates);
+        movementActions.receiveAction(TestUtils.getDirectionFromNumber(direction), true);
+        Assertions.assertArrayEquals(expectedCoordinates, layout.getWitch().getCoordinates());
     }
 
     @ParameterizedTest
@@ -45,7 +64,14 @@ public class MovementSimulationTester {
     public void testObjectHitMovementsCalculation(int currentX, int currentY, int direction) {
         int[] currentCoordinates = CoordinatesCounter.calculateCoordinates(currentX, currentY);
         int[] expectedCoordinates = CoordinatesCounter.calculateCoordinates(currentX, currentY);
+
+        simulateWitchPosition(currentCoordinates);
+        movementActions.receiveAction(TestUtils.getDirectionFromNumber(direction), true);
+        Assertions.assertArrayEquals(expectedCoordinates, layout.getWitch().getCoordinates());
     }
 
 
+   private void simulateWitchPosition(int[] coordinates) {
+        layout.getWitch().setCoordinates(coordinates);
+   }
 }

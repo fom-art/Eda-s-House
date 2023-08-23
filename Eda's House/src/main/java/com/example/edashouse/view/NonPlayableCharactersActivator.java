@@ -11,20 +11,20 @@ import javafx.scene.image.ImageView;
 public class NonPlayableCharactersActivator {
     private Layout layout;
 
-    public NonPlayableCharactersActivator(Layout layout) {
+    public NonPlayableCharactersActivator(Layout layout, boolean isTest) {
         this.layout = layout;
-        setUpNPCharacters();
-        setActiveIcon();
+        setUpNPCharacters(isTest);
+        setActiveIcon(isTest);
     }
 
 
     /**
      * Sets up the non-playable characters.
      */
-    private void setUpNPCharacters() {
+    private void setUpNPCharacters(boolean isTest) {
         for (NonPlayableCharacters npc : NonPlayableCharacters.values()
         ) {
-            setUpNonPlayableCharacter(npc);
+            setUpNonPlayableCharacter(npc, isTest);
         }
     }
 
@@ -32,10 +32,15 @@ public class NonPlayableCharactersActivator {
     /**
      * Sets up the active icon.
      */
-    private void setActiveIcon() {
+    private void setActiveIcon(boolean isTest) {
         // Initialize the image
-        Image image = new Image(ImageURL.F_KEY_ICON.getURL());
-        ImageView activeIconView = new ImageView(image);
+        ImageView activeIconView;
+        if (!isTest) {
+            Image image = new Image(ImageURL.F_KEY_ICON.getURL());
+            activeIconView = new ImageView(image);
+        } else {
+            activeIconView = new ImageView();
+        }
         // Set sizes
         activeIconView.setFitWidth(Constants.ACTIVE_ICON_SIZE.getValue());
         activeIconView.setFitHeight(Constants.ACTIVE_ICON_SIZE.getValue());
@@ -51,10 +56,15 @@ public class NonPlayableCharactersActivator {
      *
      * @param npc the non-playable character
      */
-    private void setUpNonPlayableCharacter(NonPlayableCharacters npc) {
+    private void setUpNonPlayableCharacter(NonPlayableCharacters npc, boolean isTest) {
         // Initialize the image
-        Image image = new Image(npc.getImageURL());
-        ImageView npcView = new ImageView(image);
+        ImageView npcView;
+        if (!isTest) {
+            Image image = new Image(npc.getImageURL());
+            npcView = new ImageView(image);
+        } else {
+            npcView = new ImageView();
+        }
         // Set sizes
         npcView.setFitWidth(Constants.GRID_CELL_SIZE.getValue());
         npcView.setFitHeight(Constants.GRID_CELL_SIZE.getValue());

@@ -1,4 +1,4 @@
-package utils;
+package utils_for_tests;
 
 import com.example.edashouse.model.constants.characters.NonPlayableCharacters;
 import com.example.edashouse.model.constants.characters_data.ActionsConstants;
@@ -22,7 +22,7 @@ public class TestUtils {
                 return ActionsConstants.DOWN_KEY_PRESSED;
             }
         }
-        return null;
+        return ActionsConstants.ESC_KEY_PRESSED;
     }
 
     public static NonPlayableCharacters getNPCFromNumber(int number) {

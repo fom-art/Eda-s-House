@@ -1,4 +1,4 @@
-package complex_test;
+package tests;
 
 import com.example.edashouse.controller.ActivationActions;
 import com.example.edashouse.model.constants.Items;
@@ -9,7 +9,7 @@ import com.example.edashouse.view.Layout;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
-import utils.TestUtils;
+import utils_for_tests.TestUtils;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

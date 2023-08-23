@@ -12,6 +12,7 @@ module com.example.edashouse {
 
     opens com.example.edashouse to javafx.fxml;
     exports com.example.edashouse.controller;
+    exports com.example.edashouse.view;
     exports com.example.edashouse.model.constants;
     exports com.example.edashouse.model.utils;
     exports com.example.edashouse.model.constants.characters;

@@ -30,13 +30,13 @@ public class MovementActions {
         this.npcView = npcView;
     }
 
-    private Layout getLayout() {
+    public Layout getLayout() {
         return this.layout;
     }
-    private GameLogicHandler getGameLogicHandler() {
+    public GameLogicHandler getGameLogicHandler() {
         return this.gameLogicHandler;
     }
-    private NonPlayableCharactersActivator getNpcView() {
+    public NonPlayableCharactersActivator getNpcView() {
         return this.npcView;
     }
 
@@ -45,10 +45,10 @@ public class MovementActions {
      *
      * @param action the action to be performed
      */
-    public void receiveAction(ActionsConstants action) {
+    public void receiveAction(ActionsConstants action, boolean isTest) {
         switch (action) {
             case LEFT_KEY_PRESSED, RIGHT_KEY_PRESSED,
-                    UP_KEY_PRESSED, DOWN_KEY_PRESSED -> moveHero(action);
+                    UP_KEY_PRESSED, DOWN_KEY_PRESSED -> moveHero(action, isTest);
         }
     }
 
@@ -57,13 +57,13 @@ public class MovementActions {
      *
      * @param action the direction of the movement
      */
-    private void moveHero(ActionsConstants action) {
+    private void moveHero(ActionsConstants action, boolean isTest) {
         PlayableCharacter witch = getLayout().getWitch();
         int[] witchCoordinates = witch.getCoordinates();
         witch.setLastAction(action);
         int[] directionSquare = getNextSquareFromDirection(action, witchCoordinates, false);
         getLayout().updateWitchPosition(directionSquare);
-        getLayout().updateWitchImage(action);
+        getLayout().updateWitchImage(action, isTest);
         setNPCActivation(witch);
     }
 

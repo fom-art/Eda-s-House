@@ -1,8 +1,10 @@
+package tests;
+
 import com.example.edashouse.model.utils.CoordinatesCounter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import utils.TestUtils;
+import utils_for_tests.TestUtils;
 
 
 public class MovementCalculationTester {

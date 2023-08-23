@@ -12,18 +12,23 @@ import javafx.scene.image.ImageView;
 public class ItemsPickedActivator {
     private Layout layout;
 
-    public ItemsPickedActivator(Layout layout) {
+    public ItemsPickedActivator(Layout layout, boolean isTest) {
         this.layout = layout;
-        setUpPickedItemView();
+        setUpPickedItemView(isTest);
     }
 
     /**
      * Sets up the view for the picked item.
      */
-    private void setUpPickedItemView() {
+    private void setUpPickedItemView(boolean isTest) {
         // Initialize the image
-        Image image = new Image(ImageURL.SNAKES_SKIN.getURL());
-        ImageView pickedItemView = new ImageView(image);
+        ImageView pickedItemView;
+        if (!isTest){
+            Image image = new Image(ImageURL.SNAKES_SKIN.getURL());
+            pickedItemView= new ImageView(image);
+        } else {
+            pickedItemView= new ImageView();
+        }
         // Set sizes
         pickedItemView.setFitWidth(Constants.GRID_CELL_SIZE.getValue());
         pickedItemView.setFitHeight(Constants.GRID_CELL_SIZE.getValue());
