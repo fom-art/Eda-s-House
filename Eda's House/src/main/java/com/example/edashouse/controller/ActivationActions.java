@@ -81,7 +81,7 @@ public class ActivationActions {
     /**
      * Interacts with the pot non-playable character (NPC).
      */
-    private void interactWithPot() {
+    public void interactWithPot() {
         Items itemPut = witch.getItemHeld();
         if (potLogic.getPotionResult() == null && potLogic.getItemResult() == null) {
             if (itemPut != null) {
@@ -121,7 +121,7 @@ public class ActivationActions {
      * @param witch   the witch character
      * @param itemPut the item to put into the pot
      */
-    private void putItemToPot(PlayableCharacter witch, Items itemPut) {
+    public void putItemToPot(PlayableCharacter witch, Items itemPut) {
         LoggingHandler.logInfo("Item " + itemPut + " is put in the pot");
         witch.setItemHeld(null);
         potLogic.addItemToPot(itemPut);

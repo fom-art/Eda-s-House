@@ -18,7 +18,6 @@ import utils_for_tests.TestUtils;
 import static org.mockito.Mockito.mock;
 
 public class NPCActivationTester {
-    //TODO Check, if activated NPC gives appropriate items
     private GameController gameController;
     @Mock
     private Stage stage;

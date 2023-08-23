@@ -1,5 +1,7 @@
 package utils_for_tests;
 
+import com.example.edashouse.model.constants.Items;
+import com.example.edashouse.model.constants.Potions;
 import com.example.edashouse.model.constants.characters.NonPlayableCharacters;
 import com.example.edashouse.model.constants.characters_data.ActionsConstants;
 
@@ -53,6 +55,31 @@ public class TestUtils {
             }
             case 8 -> {
                 return NonPlayableCharacters.WINDOWSILL;
+            }
+        }
+        return null;
+    }
+
+    public static Items getItemFromNumber(int number) {
+        return getNPCFromNumber(number).getItemDropped();
+    }
+
+    public static Potions getPotionFromNumber(int number) {
+        switch (number) {
+            case 0 -> {
+                return Potions.ELIXIR;
+            }
+            case 1 -> {
+                return Potions.EXPLOSION_POTION;
+            }
+            case 2 -> {
+                return Potions.FORESEEING_POTION;
+            }
+            case 3 -> {
+                return Potions.MIST_POTION;
+            }
+            case 4 -> {
+                return Potions.SUSPICIOUS_POTION;
             }
         }
         return null;
