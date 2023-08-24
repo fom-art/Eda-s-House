@@ -61,7 +61,11 @@ public class TestUtils {
     }
 
     public static Items getItemFromNumber(int number) {
-        return getNPCFromNumber(number).getItemDropped();
+        NonPlayableCharacters npc = getNPCFromNumber(number);
+        if (npc != null) {
+            return npc.getItemDropped();
+        }
+        return null;
     }
 
     public static Potions getPotionFromNumber(int number) {

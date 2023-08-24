@@ -16,6 +16,7 @@ import com.example.edashouse.view.Layout;
  * It interacts with non-playable characters (NPCs) and performs corresponding actions.
  */
 public class ActivationActions {
+
     private final GameLogicHandler gameLogicHandler;
     public final PlayableCharacter witch;
     private final PotLogic potLogic;
@@ -142,4 +143,17 @@ public class ActivationActions {
     private void startMakingPotion() {
         PotionsLogicHandler.createPotion(potLogic);
     }
+
+    public GameLogicHandler getGameLogicHandler() {
+        return gameLogicHandler;
+    }
+
+    public PlayableCharacter getWitch() {
+        return witch;
+    }
+
+    public PotLogic getPotLogic() {
+        return potLogic;
+    }
+
 }

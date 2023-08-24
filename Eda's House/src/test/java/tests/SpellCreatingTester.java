@@ -2,6 +2,7 @@ package tests;
 
 import com.example.edashouse.controller.ActivationActions;
 import com.example.edashouse.controller.GameController;
+import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.view.Layout;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,7 +16,6 @@ import utils_for_tests.TestUtils;
 import static org.mockito.Mockito.mock;
 
 public class SpellCreatingTester {
-    //TODO check the creation of spells
     private GameController gameController;
     @Mock
     private Stage stage;
@@ -39,12 +39,13 @@ public class SpellCreatingTester {
     @ParameterizedTest
     @CsvSource({"0, 4, 6, 2", "1, 1, 3, 7", "2, 7, 6, 2", "3, 0, 7, 3", "4, 4, 3, 2",})
     public void testSpellCreated(int expectedPotionCode, int firstItemCode, int secondItemCode, int thirdItemCode) {
-        layout.getWitch().setItemHeld(TestUtils.getItemFromNumber(firstItemCode));
-        activationActions.interactWithPot();
-        layout.getWitch().setItemHeld(TestUtils.getItemFromNumber(secondItemCode));
-        activationActions.interactWithPot();
-        layout.getWitch().setItemHeld(TestUtils.getItemFromNumber(thirdItemCode));
-        activationActions.interactWithPot();
+        Items[] itemsList = new Items[]{TestUtils.getItemFromNumber(firstItemCode),
+                TestUtils.getItemFromNumber(secondItemCode),TestUtils.getItemFromNumber(thirdItemCode)};
+
+        for (Items item : itemsList){
+            layout.getWitch().setItemHeld(item);
+            activationActions.interactWithPot();
+        }
 
         activationActions.interactWithPot();
         Assertions.assertEquals(TestUtils.getPotionFromNumber(expectedPotionCode), layout.getWitch().getPotionHeld());
