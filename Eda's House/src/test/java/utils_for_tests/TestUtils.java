@@ -92,4 +92,12 @@ public class TestUtils {
         return null;
     }
 
+    public static Items getExpectedItemHeld(NonPlayableCharacters npc) {
+        Items expectedItem = npc.getItemDropped();
+        if (expectedItem != Items.EMPTY_ITEM) {
+            return expectedItem;
+        } else  {
+            return null;
+        }
+    }
 }
