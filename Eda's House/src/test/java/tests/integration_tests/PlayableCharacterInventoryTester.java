@@ -42,7 +42,7 @@ public class PlayableCharacterInventoryTester {
     @ParameterizedTest
     @CsvSource({"0", "1", "2", "3", "4", "6", "7"})
     public void testItemHeldFreeingAfterPotInteraction(int npcToActivateCode) {
-        activationActions.getPotLogic().clear();
+        activationActions.potLogic().clear();
         TestUtils.clearNPConActivatedStates();
         NonPlayableCharacters npc = TestUtils.getNPCFromNumber(npcToActivateCode);
         Items item = TestUtils.getExpectedItemHeld(npc);

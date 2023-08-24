@@ -14,21 +14,14 @@ import com.example.edashouse.model.utils.PotionsLogicHandler;
  * This class handles the actions triggered by player activation events.
  * It interacts with non-playable characters (NPCs) and performs corresponding actions.
  */
-public class ActivationActions {
-
-    private final GameLogicHandler gameLogicHandler;
-    public final PlayableCharacter witch;
-    private final PotLogic potLogic;
+public record ActivationActions(GameLogicHandler gameLogicHandler, PotLogic potLogic, PlayableCharacter witch) {
 
     /**
      * Constructs a new instance of ActivationActions.
      *
      * @param gameLogicHandler the game logic handler
      */
-    public ActivationActions( GameLogicHandler gameLogicHandler, PotLogic potLogic, PlayableCharacter witch) {
-        this.gameLogicHandler = gameLogicHandler;
-        this.witch = witch;
-        this.potLogic = potLogic;
+    public ActivationActions {
     }
 
     /**
@@ -81,24 +74,20 @@ public class ActivationActions {
      * Interacts with the pot non-playable character (NPC).
      */
     public void interactWithPot() {
-        Items itemPut = witch.getItemHeld();
-        if (potLogic.getPotionResult() == null && potLogic.getItemResult() == null) {
-            if (itemPut != null) {
-                putItemToPot(witch, itemPut);
+        Items itemHeldByWitch = witch.getItemHeld();
+        if (verifyItemPreparationStatus()) {
+            if (isNextResultPotion()) {
+                takePotionFromPot();
+            } else {
+                takeItemFromPot();
+            }
+        } else {
+            if (verifyWitchHoldsAnItem(itemHeldByWitch)) {
+                putItemToPot(witch, itemHeldByWitch);
                 if (checkIfPotIsFull()) {
                     startMakingPotion();
                     potLogic.clear();
                 }
-            }
-        } else {
-            if (potLogic.getPotionResult() != null) {
-                LoggingHandler.logInfo("Potion held: " + potLogic.getPotionResult());
-                witch.setPotionHeld(potLogic.getPotionResult());
-                potLogic.setPotionResult(null);
-            } else {
-                LoggingHandler.logInfo("Item held: " + potLogic.getItemResult());
-                witch.setItemHeld(potLogic.getItemResult());
-                potLogic.setItemResult(null);
             }
         }
     }
@@ -135,23 +124,35 @@ public class ActivationActions {
         return potLogic.getItemsPut().size() == 3;
     }
 
+    private boolean verifyItemPreparationStatus() {
+        return potLogic.getPotionResult() != null || potLogic.getItemResult() != null;
+    }
+
+    private boolean isNextResultPotion() {
+        return potLogic.getPotionResult() != null;
+    }
+
+    private void takePotionFromPot() {
+        LoggingHandler.logInfo("Potion held: " + potLogic.getPotionResult());
+        witch.setPotionHeld(potLogic.getPotionResult());
+        potLogic.setPotionResult(null);
+    }
+
+    private void takeItemFromPot() {
+        LoggingHandler.logInfo("Item held: " + potLogic.getItemResult());
+        witch.setItemHeld(potLogic.getItemResult());
+        potLogic.setItemResult(null);
+    }
+
+    private boolean verifyWitchHoldsAnItem(Items itemHeldByWitch) {
+        return itemHeldByWitch != null;
+    }
+
     /**
      * Starts the process of making a potion with the pot non-playable character (NPC).
      */
     private void startMakingPotion() {
         PotionsLogicHandler.createPotion(potLogic);
-    }
-
-    public GameLogicHandler getGameLogicHandler() {
-        return gameLogicHandler;
-    }
-
-    public PlayableCharacter getWitch() {
-        return witch;
-    }
-
-    public PotLogic getPotLogic() {
-        return potLogic;
     }
 
 }

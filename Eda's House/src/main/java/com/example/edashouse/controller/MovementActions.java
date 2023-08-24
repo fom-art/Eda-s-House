@@ -12,11 +12,8 @@ import static com.example.edashouse.model.utils.CoordinatesCounter.getNextSquare
 /**
  * Controller class that handles movement actions in the game.
  */
-public class MovementActions {
-    private final Layout layout;
-    private final GameLogicHandler gameLogicHandler;
-    private final NonPlayableCharactersActivator npcView;
-
+public record MovementActions(Layout layout, NonPlayableCharactersActivator npcView,
+                              GameLogicHandler gameLogicHandler) {
     /**
      * Constructs a new instance of MovementActions.
      *
@@ -24,20 +21,7 @@ public class MovementActions {
      * @param npcView          the view of non-playable characters
      * @param gameLogicHandler the game logic handler
      */
-    public MovementActions(Layout layout, NonPlayableCharactersActivator npcView, GameLogicHandler gameLogicHandler) {
-        this.layout = layout;
-        this.gameLogicHandler = gameLogicHandler;
-        this.npcView = npcView;
-    }
-
-    public Layout getLayout() {
-        return this.layout;
-    }
-    public GameLogicHandler getGameLogicHandler() {
-        return this.gameLogicHandler;
-    }
-    public NonPlayableCharactersActivator getNpcView() {
-        return this.npcView;
+    public MovementActions {
     }
 
     /**
@@ -58,12 +42,12 @@ public class MovementActions {
      * @param action the direction of the movement
      */
     private void moveHero(ActionsConstants action, boolean isTest) {
-        PlayableCharacter witch = getLayout().getWitch();
+        PlayableCharacter witch = layout().getWitch();
         int[] witchCoordinates = witch.getCoordinates();
         witch.setLastAction(action);
         int[] directionSquare = getNextSquareFromDirection(action, witchCoordinates, false);
-        getLayout().updateWitchPosition(directionSquare);
-        getLayout().updateWitchImage(action, isTest);
+        layout().updateWitchPosition(directionSquare);
+        layout().updateWitchImage(action, isTest);
         setNPCActivation(witch);
     }
 
@@ -87,10 +71,10 @@ public class MovementActions {
         int[] witchCoordinates = witch.getCoordinates();
         int[] nextSquareCoordinates = getNextSquareFromDirection(lastAction, witchCoordinates, true);
 
-        NonPlayableCharacters nearestNPC = getGameLogicHandler().getObjectFromCoordinates(nextSquareCoordinates);
+        NonPlayableCharacters nearestNPC = gameLogicHandler().getObjectFromCoordinates(nextSquareCoordinates);
         if (nearestNPC != null) {
-            getGameLogicHandler().setNPCActive(nearestNPC);
-            getNpcView().setActive(nearestNPC);
+            gameLogicHandler().setNPCActive(nearestNPC);
+            npcView().setActive(nearestNPC);
         }
     }
 
@@ -98,7 +82,7 @@ public class MovementActions {
      * Unsets the active non-playable character (NPC) and updates the view.
      */
     private void unsetNPCActivation() {
-        getGameLogicHandler().unSetNPCActive();
-        getNpcView().unsetActivation();
+        gameLogicHandler().unSetNPCActive();
+        npcView().unsetActivation();
     }
 }

@@ -63,6 +63,6 @@ public class ItemPuttingTester {
                 activationActions.interactWithPot();
             }
         }
-        Assertions.assertEquals(itemsList, activationActions.getPotLogic().getItemsPut());
+        Assertions.assertEquals(itemsList, activationActions.potLogic().getItemsPut());
     }
 }
