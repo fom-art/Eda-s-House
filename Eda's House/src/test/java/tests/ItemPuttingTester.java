@@ -42,13 +42,13 @@ public class ItemPuttingTester {
     /**
      * @param firstItemCode
      * @param secondItemCode
-     * @param thirdItemCode  Some parameters may have number value 9.
+     * @param thirdItemCode  Some parameters may have number value -1.
      *                       Such parameters mean that I want to make these slots empty.
      *                       I make it to check cases when pot is not fully filled.
      */
     @ParameterizedTest
-    @CsvSource({"4, 6, 9", "1, 3, 9", "7, 6, 9", "0, 7, 9", "4, 3, 9", "4, 9, 9", "4, 3, 9", "1, 9, 9",
-            "4, 6, 9", "6, 3, 9", "6, 2, 9", "6, 9, 9", "9, 9, 9"})
+    @CsvSource({"4, 6, -1", "1, 3, -1", "7, 6, -1", "0, 7, -1", "4, 3, -1", "4, -1, -1", "4, 3, -1", "1, -1, -1",
+            "4, 3, -1", "6, 3, -1", "6, 2, -1", "6, -1, -1", "-1, -1, -1"})
     public void testSpellCreated(int firstItemCode, int secondItemCode, int thirdItemCode) {
         ArrayList<Items> itemsList = new ArrayList<>();
         itemsList.add(TestUtils.getItemFromNumber(firstItemCode));

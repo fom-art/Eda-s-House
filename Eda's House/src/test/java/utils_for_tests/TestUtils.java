@@ -65,6 +65,9 @@ public class TestUtils {
         if (npc != null) {
             return npc.getItemDropped();
         }
+        else if (number == 9) {
+            return Items.SNAKES_OIL;
+        }
         return null;
     }
 

@@ -37,7 +37,7 @@ public class SpellCreatingTester {
     }
 
     @ParameterizedTest
-    @CsvSource({"0, 4, 6, 2", "1, 1, 3, 7", "2, 7, 6, 2", "3, 0, 7, 3", "4, 4, 3, 2",})
+    @CsvSource({"0, 4, 9, 2", "1, 0, 3, 7", "2, 0, 3, 1", "3, 1, 7, 3", "4, 4, 3, 2",})
     public void testSpellCreated(int expectedPotionCode, int firstItemCode, int secondItemCode, int thirdItemCode) {
         Items[] itemsList = new Items[]{TestUtils.getItemFromNumber(firstItemCode),
                 TestUtils.getItemFromNumber(secondItemCode),TestUtils.getItemFromNumber(thirdItemCode)};
