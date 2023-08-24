@@ -23,6 +23,9 @@ public class GameController extends Application {
     private boolean isTest;
 
 
+    private GameLogicHandler gameLogicHandler;
+
+
     /**
      * Starts the application by initializing the stage and setting up the layout.
      *
@@ -37,7 +40,7 @@ public class GameController extends Application {
 
         setNpcView(new NonPlayableCharactersActivator(layout, getIfTest()));
         setItemPickedView(new ItemsPickedActivator(layout, isTest));
-        GameLogicHandler gameLogicHandler = new GameLogicHandler();
+        setGameLogicHandler(new GameLogicHandler());
         setSceneListenersSetter(new SceneListenersSetter(layout.getScene(), npcView, layout, gameLogicHandler,
                 new MovementActions(layout, npcView, gameLogicHandler),
                 new ActivationActions( gameLogicHandler,
@@ -51,7 +54,7 @@ public class GameController extends Application {
 
         setNpcView(new NonPlayableCharactersActivator(layout, getIfTest()));
         setItemPickedView(new ItemsPickedActivator(layout, isTest));
-        GameLogicHandler gameLogicHandler = new GameLogicHandler();
+        setGameLogicHandler(new GameLogicHandler());
         setSceneListenersSetter(new SceneListenersSetter(scene, npcView, layout, gameLogicHandler,
                 new MovementActions(layout, npcView, gameLogicHandler),
                 new ActivationActions( gameLogicHandler,
@@ -100,6 +103,15 @@ public class GameController extends Application {
     public void setSceneListenersSetter(SceneListenersSetter sceneListenersSetter) {
         this.sceneListenersSetter = sceneListenersSetter;
     }
+
+    public GameLogicHandler getGameLogicHandler() {
+        return gameLogicHandler;
+    }
+
+    public void setGameLogicHandler(GameLogicHandler gameLogicHandler) {
+        this.gameLogicHandler = gameLogicHandler;
+    }
+
 
 
 }

@@ -20,7 +20,7 @@ import utils_for_tests.TestUtils;
 
 import static org.mockito.Mockito.mock;
 
-public class NPCActivationTester {
+public class NPCIntegrationActivationTests {
     private GameController gameController;
     @Mock
     private Stage stage;
@@ -32,6 +32,8 @@ public class NPCActivationTester {
     private ActivationActions activationActions;
     private MovementActions movementActions;
 
+    private GameLogicHandler gameLogicHandler;
+
     @BeforeEach
     private void init() {
         stage = mock(Stage.class);
@@ -41,11 +43,12 @@ public class NPCActivationTester {
         layout = gameController.getLayout();
         activationActions = gameController.getSceneListenersSetter().getActivationActions();
         movementActions = gameController.getSceneListenersSetter().getMovementActions();
+        gameLogicHandler = gameController.getGameLogicHandler();
     }
 
     @ParameterizedTest
     @CsvSource({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
-    public void testRightNpcActivated(int npcToActivateCode) {
+    public void testIntegrationNPCItemDrop(int npcToActivateCode) {
         TestUtils.clearNPConActivatedStates();
         layout.getWitch().setItemHeld(null);
         NonPlayableCharacters npc = TestUtils.getNPCFromNumber(npcToActivateCode);
@@ -67,7 +70,7 @@ public class NPCActivationTester {
         layout.getWitch().setCoordinates(currentCoordinates);
         movementActions.receiveAction(direction, true);
 
-        NonPlayableCharacters activatedNpc = GameLogicHandler.getNPCToBeActivated();
+        NonPlayableCharacters activatedNpc = gameLogicHandler.getNPCToBeActivated();
         Assertions.assertEquals(expectedNpc, activatedNpc);
     }
 

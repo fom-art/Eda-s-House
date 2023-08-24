@@ -85,7 +85,7 @@ public class GameLogicHandler {
      *
      * @return the NPC character to be activated, or null if no character is marked for activation
      */
-    public static NonPlayableCharacters getNPCToBeActivated() {
+    public NonPlayableCharacters getNPCToBeActivated() {
         NonPlayableCharacters result = null;
         for (NonPlayableCharacters npc : NonPlayableCharacters.values()) {
             if (npc != null && npc.isToBeActivated()) {
