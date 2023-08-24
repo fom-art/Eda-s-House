@@ -38,8 +38,8 @@ public class CharacterImageSetTester {
 
     @ParameterizedTest
     @CsvSource({"1", "2", "3", "4"})
-    public void testImageSet(int directionCode) {
-        ActionsConstants direction = TestUtils.getDirectionFromNumber(directionCode);
+    public void testImageSet(int directionNumber) {
+        ActionsConstants direction = TestUtils.getDirectionFromNumber(directionNumber);
         String expectedImageUrl = layout.getWitch().getImageURLFromAction(direction);
 
         movementActions.receiveAction(direction, true);
