@@ -1,4 +1,4 @@
-package tests;
+package tests.integration_tests;
 
 import com.example.edashouse.controller.ActivationActions;
 import com.example.edashouse.controller.GameController;

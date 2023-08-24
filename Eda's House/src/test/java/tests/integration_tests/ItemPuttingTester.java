@@ -1,4 +1,4 @@
-package tests;
+package tests.integration_tests;
 
 import com.example.edashouse.controller.ActivationActions;
 import com.example.edashouse.controller.GameController;
@@ -49,7 +49,7 @@ public class ItemPuttingTester {
     @ParameterizedTest
     @CsvSource({"4, 6, -1", "1, 3, -1", "7, 6, -1", "0, 7, -1", "4, 3, -1", "4, -1, -1", "4, 3, -1", "1, -1, -1",
             "4, 3, -1", "6, 3, -1", "6, 2, -1", "6, -1, -1", "-1, -1, -1"})
-    public void testSpellCreated(int firstItemCode, int secondItemCode, int thirdItemCode) {
+    public void testItemsHeldInPot(int firstItemCode, int secondItemCode, int thirdItemCode) {
         ArrayList<Items> itemsList = new ArrayList<>();
         itemsList.add(TestUtils.getItemFromNumber(firstItemCode));
         itemsList.add(TestUtils.getItemFromNumber(secondItemCode));

@@ -1,5 +1,3 @@
-package tests;
-
 import com.example.edashouse.model.utils.CoordinatesCounter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
