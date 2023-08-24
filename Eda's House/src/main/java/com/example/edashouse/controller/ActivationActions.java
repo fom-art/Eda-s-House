@@ -9,7 +9,6 @@ import com.example.edashouse.model.constants.characters_data.ActionsConstants;
 import com.example.edashouse.model.units.PotLogic;
 import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.model.utils.PotionsLogicHandler;
-import com.example.edashouse.view.Layout;
 
 /**
  * This class handles the actions triggered by player activation events.
@@ -24,13 +23,12 @@ public class ActivationActions {
     /**
      * Constructs a new instance of ActivationActions.
      *
-     * @param layout           the game layout
      * @param gameLogicHandler the game logic handler
      */
-    public ActivationActions(Layout layout, GameLogicHandler gameLogicHandler) {
+    public ActivationActions( GameLogicHandler gameLogicHandler, PotLogic potLogic, PlayableCharacter witch) {
         this.gameLogicHandler = gameLogicHandler;
-        this.witch = layout.getWitch();
-        this.potLogic = new PotLogic();
+        this.witch = witch;
+        this.potLogic = potLogic;
     }
 
     /**

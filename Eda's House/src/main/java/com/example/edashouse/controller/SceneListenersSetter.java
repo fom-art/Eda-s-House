@@ -24,12 +24,14 @@ public class SceneListenersSetter {
      * @param npcView the non-playable characters activator
      * @param layout  the game layout
      */
-    public SceneListenersSetter(Scene scene, NonPlayableCharactersActivator npcView, Layout layout) {
+    public SceneListenersSetter(Scene scene, NonPlayableCharactersActivator npcView, Layout layout,
+                                GameLogicHandler gameLogicHandler, MovementActions movementActions,
+                                ActivationActions activationActions) {
         this.scene = scene;
         this.npcView = npcView;
-        this.gameLogicHandler = new GameLogicHandler();
-        this.movementActions = new MovementActions(layout, npcView, gameLogicHandler);
-        this.activationActions = new ActivationActions(layout, gameLogicHandler);
+        this.gameLogicHandler = gameLogicHandler;
+        this.movementActions = movementActions;
+        this.activationActions = activationActions;
         setUp();
     }
 

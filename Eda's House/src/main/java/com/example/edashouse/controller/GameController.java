@@ -1,11 +1,15 @@
 package com.example.edashouse.controller;
 
+import com.example.edashouse.model.units.PotLogic;
+import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.view.ItemsPickedActivator;
 import com.example.edashouse.view.Layout;
 import com.example.edashouse.view.NonPlayableCharactersActivator;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 /**
  * The main game controller class that extends the JavaFX Application class.
@@ -33,7 +37,11 @@ public class GameController extends Application {
 
         setNpcView(new NonPlayableCharactersActivator(layout, getIfTest()));
         setItemPickedView(new ItemsPickedActivator(layout, isTest));
-        setSceneListenersSetter(new SceneListenersSetter(layout.getScene(), npcView, layout));
+        GameLogicHandler gameLogicHandler = new GameLogicHandler();
+        setSceneListenersSetter(new SceneListenersSetter(layout.getScene(), npcView, layout, gameLogicHandler,
+                new MovementActions(layout, npcView, gameLogicHandler),
+                new ActivationActions( gameLogicHandler,
+                        new PotLogic(new ArrayList<>()), layout.getWitch())));
     }
 
     public void startForTest(Stage stage, Scene scene) {
@@ -43,7 +51,11 @@ public class GameController extends Application {
 
         setNpcView(new NonPlayableCharactersActivator(layout, getIfTest()));
         setItemPickedView(new ItemsPickedActivator(layout, isTest));
-        setSceneListenersSetter(new SceneListenersSetter(scene, npcView, layout));
+        GameLogicHandler gameLogicHandler = new GameLogicHandler();
+        setSceneListenersSetter(new SceneListenersSetter(scene, npcView, layout, gameLogicHandler,
+                new MovementActions(layout, npcView, gameLogicHandler),
+                new ActivationActions( gameLogicHandler,
+                        new PotLogic(new ArrayList<>()), layout.getWitch())));
     }
 
     public boolean getIfTest() {

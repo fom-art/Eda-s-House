@@ -16,8 +16,8 @@ public class PotLogic {
     /**
      * Constructs a PotLogic object.
      */
-    public PotLogic() {
-        items = new ArrayList<>();
+    public PotLogic(ArrayList<Items> items) {
+        this.items = items;
     }
 
     /**
