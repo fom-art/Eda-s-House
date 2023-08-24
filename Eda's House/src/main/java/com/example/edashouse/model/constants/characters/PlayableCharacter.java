@@ -175,4 +175,21 @@ public enum PlayableCharacter {
             case RIGHT_KEY_PRESSED -> setCurrentImageURL(imageRightURL);
         }
     }
+    public String getImageURLFromAction(ActionsConstants action) {
+        switch (action) {
+            case DOWN_KEY_PRESSED -> {
+                return imageFrontURL;
+            }
+            case UP_KEY_PRESSED -> {
+                return imageBackURL;
+            }
+            case LEFT_KEY_PRESSED -> {
+                return imageLeftURL;
+            }
+            case RIGHT_KEY_PRESSED -> {
+                return imageRightURL;
+            }
+        }
+        return null;
+    }
 }
