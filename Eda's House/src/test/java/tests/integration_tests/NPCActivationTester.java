@@ -46,13 +46,14 @@ public class NPCActivationTester {
     @ParameterizedTest
     @CsvSource({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
     public void testRightNpcActivated(int npcToActivateCode) {
+        TestUtils.clearNPConActivatedStates();
+        layout.getWitch().setItemHeld(null);
         NonPlayableCharacters npc = TestUtils.getNPCFromNumber(npcToActivateCode);
         Items expectedItem = TestUtils.getExpectedItemHeld(npc);
         npc.setToBeActivated(true);
         activationActions.receiveAction(ActionsConstants.F_KEY_PRESSED);
 
         Assertions.assertEquals(expectedItem, layout.getWitch().getItemHeld());
-        layout.getWitch().setItemHeld(null);
     }
 
     @ParameterizedTest

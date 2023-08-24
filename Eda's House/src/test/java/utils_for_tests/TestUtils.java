@@ -100,4 +100,10 @@ public class TestUtils {
             return null;
         }
     }
+
+    public static void clearNPConActivatedStates() {
+        for (NonPlayableCharacters npc: NonPlayableCharacters.values()) {
+            npc.setToBeActivated(false);
+        }
+    }
 }
