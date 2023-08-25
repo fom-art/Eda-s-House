@@ -13,6 +13,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import utils_for_tests.TestUtils;
 
 public class NPCMockitoActivationTests {
@@ -24,8 +25,7 @@ public class NPCMockitoActivationTests {
 
     @BeforeEach
     public void init() {
-        gameLogicHandler = Mockito.mock(GameLogicHandler.class);
-        potLogic = Mockito.mock(PotLogic.class);
+        MockitoAnnotations.openMocks(this);
         activationActions = new ActivationActions(gameLogicHandler, potLogic, PlayableCharacter.WITCH);
     }
 

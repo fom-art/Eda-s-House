@@ -30,7 +30,7 @@ public class PotionsLogicHandler {
         }
     }
 
-    private static Potions getPotionFromIngredients(Items[] ingredients) {
+    public static Potions getPotionFromIngredients(Items[] ingredients) {
         Arrays.sort(ingredients);
         Potions result = null;
         for (Potions potion : Potions.values()) {
