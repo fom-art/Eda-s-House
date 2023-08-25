@@ -3,6 +3,7 @@ package tests.integration_tests;
 import com.example.edashouse.controller.ActivationActions;
 import com.example.edashouse.controller.GameController;
 import com.example.edashouse.model.constants.Items;
+import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.view.Layout;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -11,11 +12,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import utils_for_tests.TestUtils;
 
 import java.util.ArrayList;
-
-import static org.mockito.Mockito.mock;
 
 public class ItemPuttingTester {
     //TODO Test if right items are being put into the pot
@@ -24,17 +24,15 @@ public class ItemPuttingTester {
     private Stage stage;
     @Mock
     private Scene scene;
-    @Mock
     private Layout layout;
 
     private ActivationActions activationActions;
 
     @BeforeEach
     private void init() {
-        stage = mock(Stage.class);
-        scene = mock(Scene.class);
+        MockitoAnnotations.openMocks(this);
         gameController = new GameController();
-        gameController.startForTest(stage, scene);
+        gameController.startForTest(stage, scene, new GameLogicHandler());
         layout = gameController.getLayout();
         activationActions = gameController.getSceneListenersSetter().getActivationActions();
     }

@@ -6,6 +6,7 @@ import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.model.constants.Potions;
 import com.example.edashouse.model.constants.characters.NonPlayableCharacters;
 import com.example.edashouse.model.constants.characters_data.ActionsConstants;
+import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.view.Layout;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -14,9 +15,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import utils_for_tests.TestUtils;
-
-import static org.mockito.Mockito.mock;
 
 public class PlayableCharacterInventoryTester {
     private GameController gameController;
@@ -24,17 +24,16 @@ public class PlayableCharacterInventoryTester {
     private Stage stage;
     @Mock
     private Scene scene;
-    @Mock
     private Layout layout;
 
     private ActivationActions activationActions;
 
     @BeforeEach
     private void init() {
-        stage = mock(Stage.class);
-        scene = mock(Scene.class);
+        MockitoAnnotations.openMocks(this);
+
         gameController = new GameController();
-        gameController.startForTest(stage, scene);
+        gameController.startForTest(stage, scene, new GameLogicHandler());
         layout = gameController.getLayout();
         activationActions = gameController.getSceneListenersSetter().getActivationActions();
     }

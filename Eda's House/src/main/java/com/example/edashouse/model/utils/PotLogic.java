@@ -1,4 +1,4 @@
-package com.example.edashouse.model.units;
+package com.example.edashouse.model.utils;
 
 import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.model.constants.Potions;

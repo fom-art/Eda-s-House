@@ -3,6 +3,7 @@ package tests.integration_tests;
 import com.example.edashouse.controller.GameController;
 import com.example.edashouse.controller.MovementActions;
 import com.example.edashouse.model.constants.characters_data.ActionsConstants;
+import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.view.Layout;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -11,9 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import utils_for_tests.TestUtils;
-
-import static org.mockito.Mockito.mock;
 
 public class CharacterImageSetTester {
     private GameController gameController;
@@ -21,17 +21,18 @@ public class CharacterImageSetTester {
     private Stage stage;
     @Mock
     private Scene scene;
-    @Mock
     private Layout layout;
+
+
 
     private MovementActions movementActions;
 
     @BeforeEach
     private void init() {
-        stage = mock(Stage.class);
-        scene = mock(Scene.class);
+        MockitoAnnotations.openMocks(this);
+
         gameController = new GameController();
-        gameController.startForTest(stage, scene);
+        gameController.startForTest(stage, scene, new GameLogicHandler());
         layout = gameController.getLayout();
         movementActions = gameController.getSceneListenersSetter().getMovementActions();
     }

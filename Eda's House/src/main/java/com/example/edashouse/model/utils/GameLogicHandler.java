@@ -13,7 +13,7 @@ public class GameLogicHandler {
      * @param newCoordinates the new coordinates to check
      * @return true if the move is valid, false otherwise
      */
-    public boolean isValidMove(int[] newCoordinates) {
+    public boolean isObjectAtCoordinates(int[] newCoordinates) {
         LoggingHandler.logInfo("New coord: " + newCoordinates[0] + " " + newCoordinates[1]);
         boolean result = true;
         for (NonPlayableCharacters npc : NonPlayableCharacters.values()) {

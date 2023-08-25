@@ -1,6 +1,6 @@
 package com.example.edashouse.controller;
 
-import com.example.edashouse.model.units.PotLogic;
+import com.example.edashouse.model.utils.PotLogic;
 import com.example.edashouse.model.utils.GameLogicHandler;
 import com.example.edashouse.view.ItemsPickedActivator;
 import com.example.edashouse.view.Layout;
@@ -47,14 +47,14 @@ public class GameController extends Application {
                         new PotLogic(new ArrayList<>()), layout.getWitch())));
     }
 
-    public void startForTest(Stage stage, Scene scene) {
+    public void startForTest(Stage stage, Scene scene, GameLogicHandler gameLogicHandler) {
         setTest(true);
         setLayout(new Layout(stage, getIfTest()));
         getLayout().addWitch(getIfTest());
 
         setNpcView(new NonPlayableCharactersActivator(layout, getIfTest()));
         setItemPickedView(new ItemsPickedActivator(layout, isTest));
-        setGameLogicHandler(new GameLogicHandler());
+        setGameLogicHandler(gameLogicHandler);
         setSceneListenersSetter(new SceneListenersSetter(scene, npcView, layout, gameLogicHandler,
                 new MovementActions(layout, npcView, gameLogicHandler),
                 new ActivationActions( gameLogicHandler,

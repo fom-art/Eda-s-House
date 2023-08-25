@@ -3,7 +3,6 @@ package com.example.edashouse.model.utils;
 import com.example.edashouse.LoggingHandler;
 import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.model.constants.Potions;
-import com.example.edashouse.model.units.PotLogic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +19,7 @@ public class PotionsLogicHandler {
         Potions potion = getPotionFromIngredients(ingredientsArray);
         Items snakeOilSlot;
         if (potion == null) {
-            snakeOilSlot = createSnakesOil(ingredientsArray);
+            snakeOilSlot = createSnakesOilFromIngredients(ingredientsArray);
             if (snakeOilSlot != null) {
                 potLogic.setItemResult(snakeOilSlot);
             } else {
@@ -48,7 +47,7 @@ public class PotionsLogicHandler {
         return new Items[]{list.get(0), list.get(1), list.get(2)};
     }
 
-    private static Items createSnakesOil(Items[] ingredients) {
+    private static Items createSnakesOilFromIngredients(Items[] ingredients) {
         Items[] snakesOilRecipe = new Items[]{Items.SPIDERS, Items.SNAKES, Items.BELLFLOWER};
         Arrays.sort(snakesOilRecipe);
         Arrays.sort(ingredients);

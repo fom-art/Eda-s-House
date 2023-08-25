@@ -39,13 +39,14 @@ public class NPCIntegrationActivationTests {
         stage = mock(Stage.class);
         scene = mock(Scene.class);
         gameController = new GameController();
-        gameController.startForTest(stage, scene);
+        gameController.startForTest(stage, scene, new GameLogicHandler());
         layout = gameController.getLayout();
         activationActions = gameController.getSceneListenersSetter().getActivationActions();
         movementActions = gameController.getSceneListenersSetter().getMovementActions();
         gameLogicHandler = gameController.getGameLogicHandler();
     }
 
+    //TODO there getNPCToBeActivated may be mocked
     @ParameterizedTest
     @CsvSource({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
     public void testIntegrationNPCItemDrop(int npcToActivateCode) {
@@ -70,6 +71,7 @@ public class NPCIntegrationActivationTests {
         layout.getWitch().setCoordinates(currentCoordinates);
         movementActions.receiveAction(direction, true);
 
+        //TODO there getNPCToBeActivated may be mocked
         NonPlayableCharacters activatedNpc = gameLogicHandler.getNPCToBeActivated();
         Assertions.assertEquals(expectedNpc, activatedNpc);
     }

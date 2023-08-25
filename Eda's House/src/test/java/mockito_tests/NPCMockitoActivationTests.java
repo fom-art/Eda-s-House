@@ -5,7 +5,7 @@ import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.model.constants.characters.NonPlayableCharacters;
 import com.example.edashouse.model.constants.characters.PlayableCharacter;
 import com.example.edashouse.model.constants.characters_data.ActionsConstants;
-import com.example.edashouse.model.units.PotLogic;
+import com.example.edashouse.model.utils.PotLogic;
 import com.example.edashouse.model.utils.GameLogicHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

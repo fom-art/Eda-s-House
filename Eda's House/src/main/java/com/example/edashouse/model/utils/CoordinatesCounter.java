@@ -70,7 +70,7 @@ public class CoordinatesCounter {
     private static int[] getCoordinatesFromLeft(int[] oldCoordinates, GameLogicHandler gameLogicHandler, boolean isForNPCActivation) {
         int[] newCoordinates = new int[]{oldCoordinates[0] - Constants.GRID_CELL_SIZE.getValue(), oldCoordinates[1]};
         if (oldCoordinates[0] != 0) {
-            if (gameLogicHandler.isValidMove(newCoordinates) || isForNPCActivation) {
+            if (gameLogicHandler.isObjectAtCoordinates(newCoordinates) || isForNPCActivation) {
                 LoggingHandler.logInfo("MOVED LEFT");
                 return newCoordinates;
             }
@@ -91,7 +91,7 @@ public class CoordinatesCounter {
     private static int[] getCoordinatesFromRight(int[] oldCoordinates, GameLogicHandler gameLogicHandler, boolean isForNPCActivation) {
         int[] newCoordinates = new int[]{oldCoordinates[0] + Constants.GRID_CELL_SIZE.getValue(), oldCoordinates[1]};
         if (oldCoordinates[0] != Constants.GRID_CELL_SIZE.getValue() * (Constants.GRID_SIZE_IN_CELLS.getValue() - 1)) {
-            if (gameLogicHandler.isValidMove(newCoordinates) || isForNPCActivation) {
+            if (gameLogicHandler.isObjectAtCoordinates(newCoordinates) || isForNPCActivation) {
                 LoggingHandler.logInfo("MOVED RIGHT");
                 return newCoordinates;
             }
@@ -112,7 +112,7 @@ public class CoordinatesCounter {
     private static int[] getCoordinatesFromBelow(int[] oldCoordinates, GameLogicHandler gameLogicHandler, boolean isForNPCActivation) {
         int[] newCoordinates = new int[]{oldCoordinates[0], oldCoordinates[1] + Constants.GRID_CELL_SIZE.getValue()};
         if (oldCoordinates[1] != Constants.GRID_CELL_SIZE.getValue() * (Constants.GRID_SIZE_IN_CELLS.getValue() - 1)) {
-            if (gameLogicHandler.isValidMove(newCoordinates) || isForNPCActivation) {
+            if (gameLogicHandler.isObjectAtCoordinates(newCoordinates) || isForNPCActivation) {
                 LoggingHandler.logInfo("MOVED DOWN");
                 return newCoordinates;
             }
@@ -133,7 +133,7 @@ public class CoordinatesCounter {
     private static int[] getCoordinatesFromAbove(int[] oldCoordinates, GameLogicHandler gameLogicHandler, boolean isForNPCActivation) {
         int[] newCoordinates = new int[]{oldCoordinates[0], oldCoordinates[1] - Constants.GRID_CELL_SIZE.getValue()};
         if (oldCoordinates[1] != 0) {
-            if (gameLogicHandler.isValidMove(newCoordinates) || isForNPCActivation) {
+            if (gameLogicHandler.isObjectAtCoordinates(newCoordinates) || isForNPCActivation) {
                 LoggingHandler.logInfo("MOVED UP");
                 return newCoordinates;
             }
