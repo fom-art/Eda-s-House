@@ -16,8 +16,10 @@ public class PotionsLogicHandler {
     public static void createPotion(PotLogic potLogic) {
         LoggingHandler.logInfo("Potion is to be made");
         Items[] ingredientsArray = getArrayFromList(potLogic.getItemsPut());
+
         Potions potion = getPotionFromIngredients(ingredientsArray);
         Items snakeOilSlot;
+
         if (potion == null) {
             snakeOilSlot = createSnakesOilFromIngredients(ingredientsArray);
             if (snakeOilSlot != null) {

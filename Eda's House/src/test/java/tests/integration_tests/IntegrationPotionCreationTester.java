@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import utils_for_tests.TestUtils;
 
-public class SpellCreatingTester {
+public class IntegrationPotionCreationTester {
     private GameController gameController;
     @Mock
     private Stage stage;

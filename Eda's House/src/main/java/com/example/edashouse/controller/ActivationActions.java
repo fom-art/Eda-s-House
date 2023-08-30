@@ -50,7 +50,7 @@ public record ActivationActions(GameLogicHandler gameLogicHandler, PotLogic potL
      *
      * @param npc the non-playable character to perform the action
      */
-    public void makeAnAction(NonPlayableCharacters npc) {
+    private void makeAnAction(NonPlayableCharacters npc) {
         switch (npc) {
             case BELLFLOWER, BUGS, HUMANS_GARBAGE, KING, MOUSES, SNAKES, SPIDERS -> pickAnItem(npc.getItemDropped());
             case POT -> interactWithPot();
@@ -151,7 +151,7 @@ public record ActivationActions(GameLogicHandler gameLogicHandler, PotLogic potL
     /**
      * Starts the process of making a potion with the pot non-playable character (NPC).
      */
-    private void startMakingPotion() {
+    public void startMakingPotion() {
         PotionsLogicHandler.createPotion(potLogic);
     }
 
