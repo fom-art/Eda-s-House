@@ -18,16 +18,26 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import utils_for_tests.TestUtils;
 
+/**
+ * Integration tests for the playable character's inventory interactions.
+ */
 public class PlayableCharacterInventoryTester {
+
     private GameController gameController;
+
     @Mock
     private Stage stage;
+
     @Mock
     private Scene scene;
+
     private Layout layout;
 
     private ActivationActions activationActions;
 
+    /**
+     * Initializes the necessary objects before each test.
+     */
     @BeforeEach
     private void init() {
         MockitoAnnotations.openMocks(this);
@@ -38,6 +48,11 @@ public class PlayableCharacterInventoryTester {
         activationActions = gameController.getSceneListenersSetter().getActivationActions();
     }
 
+    /**
+     * Tests the freeing of item held in the character's inventory after pot interaction.
+     *
+     * @param npcToActivateCode the code of the NPC to activate
+     */
     @ParameterizedTest
     @CsvSource({"0", "1", "2", "3", "4", "6", "7"})
     public void testItemHeldFreeingAfterPotInteraction(int npcToActivateCode) {
@@ -55,6 +70,11 @@ public class PlayableCharacterInventoryTester {
         Assertions.assertNull(layout.getWitch().getItemHeld());
     }
 
+    /**
+     * Tests the freeing of potion held in the character's inventory after windowsill interaction.
+     *
+     * @param potionToSellNumber the code of the potion to sell
+     */
     @ParameterizedTest
     @CsvSource({"0", "1", "2", "3", "4"})
     public void testPotionHeldFreeingAfterWindowsillInteraction(int potionToSellNumber) {

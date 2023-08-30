@@ -16,42 +16,60 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import utils_for_tests.TestUtils;
 
 import static org.mockito.Mockito.mock;
 
+/**
+ * Integration tests for NPC activation.
+ */
 public class NPCIntegrationActivationTests {
+
     private GameController gameController;
+
     @Mock
     private Stage stage;
+
     @Mock
     private Scene scene;
+
     @Mock
     private Layout layout;
 
     private ActivationActions activationActions;
     private MovementActions movementActions;
-
     private GameLogicHandler gameLogicHandler;
 
+    /**
+     * Initializes the necessary objects before each test.
+     */
     @BeforeEach
     private void init() {
+        MockitoAnnotations.openMocks(this);
+
         stage = mock(Stage.class);
         scene = mock(Scene.class);
+        layout = mock(Layout.class);
+
         gameController = new GameController();
         gameController.startForTest(stage, scene, new GameLogicHandler());
-        layout = gameController.getLayout();
         activationActions = gameController.getSceneListenersSetter().getActivationActions();
         movementActions = gameController.getSceneListenersSetter().getMovementActions();
         gameLogicHandler = gameController.getGameLogicHandler();
     }
 
-    //TODO there getNPCToBeActivated may be mocked
+    /**
+     * Tests the integration of NPC item dropping.
+     *
+     * @param npcToActivateCode the code of the NPC to activate
+     */
     @ParameterizedTest
     @CsvSource({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
     public void testIntegrationNPCItemDrop(int npcToActivateCode) {
         TestUtils.clearNPConActivatedStates();
         layout.getWitch().setItemHeld(null);
+        layout.getWitch().setPotionHeld(null);
         NonPlayableCharacters npc = TestUtils.getNPCFromNumber(npcToActivateCode);
         Items expectedItem = TestUtils.getExpectedItemHeld(npc);
         npc.setToBeActivated(true);
@@ -60,10 +78,18 @@ public class NPCIntegrationActivationTests {
         Assertions.assertEquals(expectedItem, layout.getWitch().getItemHeld());
     }
 
+    /**
+     * Tests the integration of NPC activation by movement.
+     *
+     * @param currentX       the current X-coordinate of the character
+     * @param currentY       the current Y-coordinate of the character
+     * @param directionNumber the direction of movement
+     * @param npcHitNumber   the code of the expected NPC hit by the movement
+     */
     @ParameterizedTest
     @CsvSource({"1, 5, 3, 3", "5, 4, 4, 5", "8, 5, 1, 8", "9, 4, 4, 8", "8, 9, 1, 7"})
     public void testNpcActivatedByMovement(int currentX, int currentY,
-                                              int directionNumber, int npcHitNumber) {
+                                           int directionNumber, int npcHitNumber) {
         int[] currentCoordinates = CoordinatesCounter.calculateCoordinates(currentX, currentY);
         ActionsConstants direction = TestUtils.getDirectionFromNumber(directionNumber);
         NonPlayableCharacters expectedNpc = TestUtils.getNPCFromNumber(npcHitNumber);
@@ -71,10 +97,7 @@ public class NPCIntegrationActivationTests {
         layout.getWitch().setCoordinates(currentCoordinates);
         movementActions.receiveAction(direction, true);
 
-        //TODO there getNPCToBeActivated may be mocked
         NonPlayableCharacters activatedNpc = gameLogicHandler.getNPCToBeActivated();
         Assertions.assertEquals(expectedNpc, activatedNpc);
     }
-
-
 }

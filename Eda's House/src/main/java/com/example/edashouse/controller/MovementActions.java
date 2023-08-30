@@ -14,6 +14,7 @@ import static com.example.edashouse.model.utils.CoordinatesCounter.getNextSquare
  */
 public record MovementActions(Layout layout, NonPlayableCharactersActivator npcView,
                               GameLogicHandler gameLogicHandler) {
+
     /**
      * Constructs a new instance of MovementActions.
      *
@@ -27,7 +28,8 @@ public record MovementActions(Layout layout, NonPlayableCharactersActivator npcV
     /**
      * Receives an action and performs the corresponding movement.
      *
-     * @param action the action to be performed
+     * @param action  the action to be performed
+     * @param isTest  whether the game is in test mode
      */
     public void receiveAction(ActionsConstants action, boolean isTest) {
         switch (action) {
@@ -39,7 +41,8 @@ public record MovementActions(Layout layout, NonPlayableCharactersActivator npcV
     /**
      * Moves the playable character in the specified direction.
      *
-     * @param action the direction of the movement
+     * @param action  the direction of the movement
+     * @param isTest  whether the game is in test mode
      */
     private void moveHero(ActionsConstants action, boolean isTest) {
         PlayableCharacter witch = layout().getWitch();
@@ -54,7 +57,7 @@ public record MovementActions(Layout layout, NonPlayableCharactersActivator npcV
     /**
      * Sets the nearest non-playable character (NPC) as active based on the playable character's position.
      *
-     * @param witch the playable character
+     * @param witch  the playable character
      */
     private void setNPCActivation(PlayableCharacter witch) {
         unsetNPCActivation();
@@ -64,7 +67,7 @@ public record MovementActions(Layout layout, NonPlayableCharactersActivator npcV
     /**
      * Sets the nearest non-playable character (NPC) as active based on the playable character's position and last action.
      *
-     * @param witch the playable character
+     * @param witch  the playable character
      */
     private void setNearestNPCActive(PlayableCharacter witch) {
         ActionsConstants lastAction = witch.getLastAction();

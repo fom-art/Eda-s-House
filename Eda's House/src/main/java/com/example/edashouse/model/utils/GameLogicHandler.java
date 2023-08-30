@@ -6,21 +6,25 @@ import com.example.edashouse.model.constants.utils.Constants;
 
 import java.util.Arrays;
 
+/**
+ * Utility class for handling game logic related to character interactions and positions.
+ */
 public class GameLogicHandler {
+
     /**
-     * Checks if the new coordinates are a valid move.
+     * Checks if there is an object at the specified coordinates.
      *
      * @param newCoordinates the new coordinates to check
-     * @return true if the move is valid, false otherwise
+     * @return true if an object exists at the coordinates, false otherwise
      */
     public boolean isObjectAtCoordinates(int[] newCoordinates) {
         LoggingHandler.logInfo("New coord: " + newCoordinates[0] + " " + newCoordinates[1]);
-        boolean result = true;
+        boolean result = false;
         for (NonPlayableCharacters npc : NonPlayableCharacters.values()) {
             LoggingHandler.logInfo("Object coord: " + npc.getCoordinates()[0] + " " + npc.getCoordinates()[1]);
             LoggingHandler.logInfo("Object name: " + npc.name() + " " + Arrays.equals(npc.getCoordinates(), newCoordinates));
             if (Arrays.equals(npc.getCoordinates(), newCoordinates)) {
-                result = false;
+                result = true;
                 break;
             }
         }

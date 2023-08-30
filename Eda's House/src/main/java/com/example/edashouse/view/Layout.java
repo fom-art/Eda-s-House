@@ -15,13 +15,21 @@ import javafx.stage.Stage;
 
 import java.util.Arrays;
 
+/**
+ * Represents the layout of the game, including the pane, scene, and stage.
+ */
 public class Layout {
     private PlayableCharacter witch;
     private Pane pane;
     private Scene scene;
     private final Stage stage;
 
-
+    /**
+     * Constructs a Layout object for the game.
+     *
+     * @param stage  the main stage for the game
+     * @param isTest indicates whether the layout is for testing purposes
+     */
     public Layout(Stage stage, boolean isTest) {
         this.stage = stage;
         setGameLayout(isTest);
@@ -64,7 +72,9 @@ public class Layout {
     }
 
     /**
-     * Sets up the game layout.
+     * Sets up the game layout, including the pane, scene, and stage.
+     *
+     * @param isTest indicates whether the layout is for testing purposes
      */
     public void setGameLayout(boolean isTest) {
         setPane(isTest);
@@ -75,7 +85,9 @@ public class Layout {
     }
 
     /**
-     * Sets up the pane.
+     * Sets up the pane for the game layout.
+     *
+     * @param isTest indicates whether the layout is for testing purposes
      */
     private void setPane(boolean isTest) {
         pane = new Pane();
@@ -87,7 +99,7 @@ public class Layout {
     }
 
     /**
-     * Sets up the scene.
+     * Sets up the scene for the game layout.
      */
     private void setScene() {
         scene = new Scene(pane,
@@ -96,29 +108,33 @@ public class Layout {
     }
 
     /**
-     * Sets up the stage.
+     * Sets up the stage for the game layout.
      */
     private void setStage() {
         stage.setTitle("Eda's House");
         stage.setScene(scene);
-        // I am not sure if I am going to use the full screen
-        // stage.setFullScreen(true);
         stage.setResizable(false);
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         stage.show();
     }
 
     /**
-     * Sets up the background for the pane.
+     * Sets up the background image for the pane.
+     *
+     * @throws RuntimeException if there is an issue setting up the background
      */
     public void setPaneBackground() throws RuntimeException {
-        Image backgroundImage = new Image(ImageURL.BACKGROUND.getURL(), Constants.GRID_CELL_SIZE.getValue() * Constants.GRID_SIZE_IN_CELLS.getValue(), Constants.GRID_CELL_SIZE.getValue() * Constants.GRID_SIZE_IN_CELLS.getValue(), false, false);
+        Image backgroundImage = new Image(ImageURL.BACKGROUND.getURL(),
+                Constants.GRID_CELL_SIZE.getValue() * Constants.GRID_SIZE_IN_CELLS.getValue(),
+                Constants.GRID_CELL_SIZE.getValue() * Constants.GRID_SIZE_IN_CELLS.getValue(), false, false);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, null);
         pane.setBackground(new Background(background));
     }
 
     /**
      * Adds the witch character to the layout.
+     *
+     * @param isTest indicates whether the layout is for testing purposes
      */
     public void addWitch(boolean isTest) {
         witch = PlayableCharacter.WITCH;
@@ -161,18 +177,18 @@ public class Layout {
      * Updates the image of the witch character based on the specified direction.
      *
      * @param direction the direction of the witch character
+     * @param isTest    indicates whether the layout is for testing purposes
      */
     public void updateWitchImage(ActionsConstants direction, boolean isTest) {
         // Update the witch data
         getWitch().setImageURLFromAction(direction);
         // Get witch view from pane
         ImageView witchView = (ImageView) getPane().getChildren().get(Characters.WITCH.getIndex());
-        if (!isTest){
+        if (!isTest) {
             // Initialize the image
             Image image = new Image(getWitch().getCurrentImageURL());
             // Update the image
             witchView.setImage(image);
         }
-
     }
 }

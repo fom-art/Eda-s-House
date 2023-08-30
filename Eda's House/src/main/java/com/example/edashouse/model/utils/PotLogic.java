@@ -9,12 +9,14 @@ import java.util.ArrayList;
  * Represents the logic for a pot in the game.
  */
 public class PotLogic {
-    ArrayList<Items> items;
-    Potions potionResult;
-    Items itemResult;
+    private ArrayList<Items> items;
+    private Potions potionResult;
+    private Items itemResult;
 
     /**
      * Constructs a PotLogic object.
+     *
+     * @param items the ArrayList to store items put into the pot
      */
     public PotLogic(ArrayList<Items> items) {
         this.items = items;
@@ -35,7 +37,7 @@ public class PotLogic {
      * @return the items put into the pot
      */
     public ArrayList<Items> getItemsPut() {
-        return this.items;
+        return items;
     }
 
     /**

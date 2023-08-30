@@ -9,9 +9,18 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * Utility class responsible for activating and updating the view of the picked item.
+ */
 public class ItemsPickedActivator {
     private Layout layout;
 
+    /**
+     * Constructs an ItemsPickedActivator object.
+     *
+     * @param layout  the game layout
+     * @param isTest  whether the code is running in a test environment
+     */
     public ItemsPickedActivator(Layout layout, boolean isTest) {
         this.layout = layout;
         setUpPickedItemView(isTest);
@@ -19,15 +28,17 @@ public class ItemsPickedActivator {
 
     /**
      * Sets up the view for the picked item.
+     *
+     * @param isTest  whether the code is running in a test environment
      */
     private void setUpPickedItemView(boolean isTest) {
         // Initialize the image
         ImageView pickedItemView;
-        if (!isTest){
+        if (!isTest) {
             Image image = new Image(ImageURL.SNAKES_SKIN.getURL());
-            pickedItemView= new ImageView(image);
+            pickedItemView = new ImageView(image);
         } else {
-            pickedItemView= new ImageView();
+            pickedItemView = new ImageView();
         }
         // Set sizes
         pickedItemView.setFitWidth(Constants.GRID_CELL_SIZE.getValue());

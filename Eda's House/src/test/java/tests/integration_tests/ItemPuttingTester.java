@@ -17,20 +17,29 @@ import utils_for_tests.TestUtils;
 
 import java.util.ArrayList;
 
+/**
+ * Integration tests for putting items into the pot.
+ */
 public class ItemPuttingTester {
-    //TODO Test if right items are being put into the pot
+
     private GameController gameController;
+
     @Mock
     private Stage stage;
+
     @Mock
     private Scene scene;
-    private Layout layout;
 
+    private Layout layout;
     private ActivationActions activationActions;
 
+    /**
+     * Initializes the necessary objects before each test.
+     */
     @BeforeEach
     private void init() {
         MockitoAnnotations.openMocks(this);
+
         gameController = new GameController();
         gameController.startForTest(stage, scene, new GameLogicHandler());
         layout = gameController.getLayout();
@@ -38,11 +47,11 @@ public class ItemPuttingTester {
     }
 
     /**
-     * @param firstItemCode
-     * @param secondItemCode
-     * @param thirdItemCode  Some parameters may have number value -1.
-     *                       Such parameters mean that I want to make these slots empty.
-     *                       I make it to check cases when pot is not fully filled.
+     * Tests if the correct items are being put into the pot.
+     *
+     * @param firstItemCode  the code representing the first item
+     * @param secondItemCode the code representing the second item
+     * @param thirdItemCode  the code representing the third item
      */
     @ParameterizedTest
     @CsvSource({"4, 6, -1", "1, 3, -1", "7, 6, -1", "0, 7, -1", "4, 3, -1", "4, -1, -1", "4, 3, -1", "1, -1, -1",
@@ -52,15 +61,14 @@ public class ItemPuttingTester {
         itemsList.add(TestUtils.getItemFromNumber(firstItemCode));
         itemsList.add(TestUtils.getItemFromNumber(secondItemCode));
         itemsList.add(TestUtils.getItemFromNumber(thirdItemCode));
-        for (int i = 0; i < 3; i++) {
-            itemsList.remove(null);
-        }
+
+        itemsList.removeIf(item -> item == null);
+
         for (Items item : itemsList) {
-            if (item != null) {
-                layout.getWitch().setItemHeld(item);
-                activationActions.interactWithPot();
-            }
+            layout.getWitch().setItemHeld(item);
+            activationActions.interactWithPot();
         }
+
         Assertions.assertEquals(itemsList, activationActions.potLogic().getItemsPut());
     }
 }

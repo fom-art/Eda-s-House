@@ -20,9 +20,12 @@ public class SceneListenersSetter {
     /**
      * Constructs a new instance of SceneListenersSetter.
      *
-     * @param scene   the scene to set up listeners for
-     * @param npcView the non-playable characters activator
-     * @param layout  the game layout
+     * @param scene            the scene to set up listeners for
+     * @param npcView          the non-playable characters activator
+     * @param layout           the game layout
+     * @param gameLogicHandler the game logic handler
+     * @param movementActions  the movement actions
+     * @param activationActions the activation actions
      */
     public SceneListenersSetter(Scene scene, NonPlayableCharactersActivator npcView, Layout layout,
                                 GameLogicHandler gameLogicHandler, MovementActions movementActions,
@@ -66,18 +69,38 @@ public class SceneListenersSetter {
         return gameLogicHandler;
     }
 
+    /**
+     * Returns the scene associated with the listeners.
+     *
+     * @return the scene
+     */
     public Scene getScene() {
         return scene;
     }
 
+    /**
+     * Returns the movement actions instance.
+     *
+     * @return the movement actions
+     */
     public MovementActions getMovementActions() {
         return movementActions;
     }
 
+    /**
+     * Returns the activation actions instance.
+     *
+     * @return the activation actions
+     */
     public ActivationActions getActivationActions() {
         return activationActions;
     }
 
+    /**
+     * Returns the non-playable characters activator instance.
+     *
+     * @return the non-playable characters activator
+     */
     public NonPlayableCharactersActivator getNpcView() {
         return npcView;
     }

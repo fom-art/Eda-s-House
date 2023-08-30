@@ -7,7 +7,11 @@ import com.example.edashouse.model.constants.Potions;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Utility class for handling the logic related to potion creation and ingredients.
+ */
 public class PotionsLogicHandler {
+
     /**
      * Creates a potion based on the items present in the Pot object.
      *
@@ -32,6 +36,12 @@ public class PotionsLogicHandler {
         }
     }
 
+    /**
+     * Determines the potion that can be created from the given ingredients.
+     *
+     * @param ingredients the array of items representing the ingredients
+     * @return the potion created from the ingredients, or null if no valid potion can be created
+     */
     public static Potions getPotionFromIngredients(Items[] ingredients) {
         Arrays.sort(ingredients);
         Potions result = null;
@@ -45,10 +55,22 @@ public class PotionsLogicHandler {
         return result;
     }
 
+    /**
+     * Converts an ArrayList of Items into an array of Items.
+     *
+     * @param list the ArrayList of Items
+     * @return the array of Items
+     */
     private static Items[] getArrayFromList(ArrayList<Items> list) {
         return new Items[]{list.get(0), list.get(1), list.get(2)};
     }
 
+    /**
+     * Creates Snakes Oil item from the given ingredients if possible.
+     *
+     * @param ingredients the array of items representing the ingredients
+     * @return the Snakes Oil item if it can be created, or null otherwise
+     */
     private static Items createSnakesOilFromIngredients(Items[] ingredients) {
         Items[] snakesOilRecipe = new Items[]{Items.SPIDERS, Items.SNAKES, Items.BELLFLOWER};
         Arrays.sort(snakesOilRecipe);

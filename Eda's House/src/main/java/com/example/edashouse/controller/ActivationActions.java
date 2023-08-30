@@ -6,8 +6,8 @@ import com.example.edashouse.model.constants.Potions;
 import com.example.edashouse.model.constants.characters.NonPlayableCharacters;
 import com.example.edashouse.model.constants.characters.PlayableCharacter;
 import com.example.edashouse.model.constants.characters_data.ActionsConstants;
-import com.example.edashouse.model.utils.PotLogic;
 import com.example.edashouse.model.utils.GameLogicHandler;
+import com.example.edashouse.model.utils.PotLogic;
 import com.example.edashouse.model.utils.PotionsLogicHandler;
 
 /**
@@ -154,5 +154,4 @@ public record ActivationActions(GameLogicHandler gameLogicHandler, PotLogic potL
     public void startMakingPotion() {
         PotionsLogicHandler.createPotion(potLogic);
     }
-
 }
