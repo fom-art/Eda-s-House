@@ -19,12 +19,12 @@ public class GameLogicHandler {
      */
     public boolean isObjectAtCoordinates(int[] newCoordinates) {
         LoggingHandler.logInfo("New coord: " + newCoordinates[0] + " " + newCoordinates[1]);
-        boolean result = false;
+        boolean result = true;
         for (NonPlayableCharacters npc : NonPlayableCharacters.values()) {
             LoggingHandler.logInfo("Object coord: " + npc.getCoordinates()[0] + " " + npc.getCoordinates()[1]);
             LoggingHandler.logInfo("Object name: " + npc.name() + " " + Arrays.equals(npc.getCoordinates(), newCoordinates));
             if (Arrays.equals(npc.getCoordinates(), newCoordinates)) {
-                result = true;
+                result = false;
                 break;
             }
         }

@@ -5,6 +5,7 @@ import com.example.edashouse.controller.GameController;
 import com.example.edashouse.controller.MovementActions;
 import com.example.edashouse.model.constants.Items;
 import com.example.edashouse.model.constants.characters.NonPlayableCharacters;
+import com.example.edashouse.model.constants.characters.PlayableCharacter;
 import com.example.edashouse.model.constants.characters_data.ActionsConstants;
 import com.example.edashouse.model.utils.CoordinatesCounter;
 import com.example.edashouse.model.utils.GameLogicHandler;
@@ -16,7 +17,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import utils_for_tests.TestUtils;
 
 import static org.mockito.Mockito.mock;
@@ -46,14 +46,11 @@ public class NPCIntegrationActivationTests {
      */
     @BeforeEach
     private void init() {
-        MockitoAnnotations.openMocks(this);
-
         stage = mock(Stage.class);
         scene = mock(Scene.class);
-        layout = mock(Layout.class);
-
         gameController = new GameController();
         gameController.startForTest(stage, scene, new GameLogicHandler());
+        layout = gameController.getLayout();
         activationActions = gameController.getSceneListenersSetter().getActivationActions();
         movementActions = gameController.getSceneListenersSetter().getMovementActions();
         gameLogicHandler = gameController.getGameLogicHandler();
@@ -68,14 +65,14 @@ public class NPCIntegrationActivationTests {
     @CsvSource({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
     public void testIntegrationNPCItemDrop(int npcToActivateCode) {
         TestUtils.clearNPConActivatedStates();
-        layout.getWitch().setItemHeld(null);
-        layout.getWitch().setPotionHeld(null);
+        PlayableCharacter.WITCH.setItemHeld(null);
+        PlayableCharacter.WITCH.setPotionHeld(null);
         NonPlayableCharacters npc = TestUtils.getNPCFromNumber(npcToActivateCode);
         Items expectedItem = TestUtils.getExpectedItemHeld(npc);
         npc.setToBeActivated(true);
         activationActions.receiveAction(ActionsConstants.F_KEY_PRESSED);
 
-        Assertions.assertEquals(expectedItem, layout.getWitch().getItemHeld());
+        Assertions.assertEquals(expectedItem, PlayableCharacter.WITCH.getItemHeld());
     }
 
     /**
